@@ -1,4 +1,5 @@
-﻿using PetHotel.Domain.Entities;
+﻿using PetHotel.Application.Service.Dto;
+using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.Reservatiion.Dto;
 
@@ -10,6 +11,6 @@ public class ReservationDto
     public string Status { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-        
-    public ReservationService? ReservationService { get; set; }
+     
+    public List<ServiceDto> Services { get; set; } = [];
 }

@@ -1,4 +1,7 @@
 ﻿using PetHotel.Application.Image.Dto;
+using PetHotel.Application.Reservatiion.Dto;
+using PetHotel.Application.Review.Dto;
+using PetHotel.Application.Room.Dto;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.Hotel.Dto;
@@ -21,7 +24,7 @@ public class HotelDto
     public DateTime UpdatedAt { get; set; }
 
     public List<ImageDto> Images { get; set; } = [];
-   // public List<ReservationDto> Reservations { get; set; } = [];
-    //public List<ReviewDto> Reviews { get; set; } = [];
-  //  public List<RoomDto> Rooms { get; set; } = [];
+    public List<ReservationDto> Reservations { get; set; } = [];
+    public List<ReviewDto> Reviews { get; set; } = [];
+    public List<RoomDto> Rooms { get; set; } = [];
 }

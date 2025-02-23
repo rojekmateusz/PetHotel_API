@@ -1,4 +1,5 @@
 ﻿using PetHotel.Application.Animal.Dto;
+using PetHotel.Application.Payment.Dto;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.Owner.Dto;
@@ -17,5 +18,5 @@ public class OwnerDto
     public DateTime UpdatedAt { get; set; }
 
     public List<AnimalDto> Animals { get; set; } = [];
-  //  public List<PaymentDto> Payments { get; set; } = [];
+    public List<PaymentDto> Payments { get; set; } = [];
 }

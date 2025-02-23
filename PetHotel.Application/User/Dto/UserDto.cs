@@ -1,6 +1,10 @@
-﻿namespace PetHotel.Domain.Entities;
+﻿using PetHotel.Application.Review.Dto;
+using PetHotel.Application.Role.Dto;
+using PetHotel.Domain.Entities;
 
-public class User
+namespace PetHotel.Application.User.Dto;
+
+public class UserDto
 {
     public int Id { get; set; }
     public string Username { get; set; } = default!;
@@ -10,7 +14,7 @@ public class User
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    public List<Review> Reviews { get; set; } = [];
+    public List<ReviewDto> Reviews { get; set; } = [];
 
-    public List<UserRole> UserRoles { get; set; } = [];
+    public List<RoleDto> Roles { get; set; } = [];
 }

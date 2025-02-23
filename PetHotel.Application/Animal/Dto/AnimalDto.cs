@@ -1,4 +1,5 @@
-﻿using PetHotel.Domain.Entities;
+﻿using PetHotel.Application.Reservatiion.Dto;
+using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.Animal.Dto;
 
@@ -12,8 +13,6 @@ public class AnimalDto
     public decimal? Weight { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-
-    public int OwnerID { get; set; }
-    public List<Reservation> Reservations { get; set; } = [];
+    public List<ReservationDto> Reservations { get; set; } = [];
         
 }
