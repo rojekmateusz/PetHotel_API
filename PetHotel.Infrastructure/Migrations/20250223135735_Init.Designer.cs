@@ -12,7 +12,7 @@ using PetHotel.Infrastructure.Persistance;
 namespace PetHotel.Infrastructure.Migrations
 {
     [DbContext(typeof(PetHotelDbContext))]
-    [Migration("20250223111055_Init")]
+    [Migration("20250223135735_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -45,6 +45,9 @@ namespace PetHotel.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OwnerID")
@@ -280,25 +283,13 @@ namespace PetHotel.Infrastructure.Migrations
 
             modelBuilder.Entity("PetHotel.Domain.Entities.ReservationService", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ServiceId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("ReservationId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
+                    b.HasKey("ServiceId", "ReservationId");
 
                     b.ToTable("ReservationServices");
                 });
@@ -418,15 +409,10 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ReservationServiceId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReservationServiceId");
 
                     b.ToTable("Services");
                 });
@@ -541,12 +527,20 @@ namespace PetHotel.Infrastructure.Migrations
             modelBuilder.Entity("PetHotel.Domain.Entities.ReservationService", b =>
                 {
                     b.HasOne("PetHotel.Domain.Entities.Reservation", "Reservation")
-                        .WithOne("ReservationService")
-                        .HasForeignKey("PetHotel.Domain.Entities.ReservationService", "ReservationId")
+                        .WithMany("ReservationServices")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetHotel.Domain.Entities.Service", "Service")
+                        .WithMany("ReservationServices")
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Reservation");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Review", b =>
@@ -571,15 +565,6 @@ namespace PetHotel.Infrastructure.Migrations
                     b.HasOne("PetHotel.Domain.Entities.Hotel", null)
                         .WithMany("Rooms")
                         .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PetHotel.Domain.Entities.Service", b =>
-                {
-                    b.HasOne("PetHotel.Domain.Entities.ReservationService", null)
-                        .WithMany("Services")
-                        .HasForeignKey("ReservationServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -628,17 +613,17 @@ namespace PetHotel.Infrastructure.Migrations
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Reservation", b =>
                 {
-                    b.Navigation("ReservationService");
-                });
-
-            modelBuilder.Entity("PetHotel.Domain.Entities.ReservationService", b =>
-                {
-                    b.Navigation("Services");
+                    b.Navigation("ReservationServices");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Role", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("PetHotel.Domain.Entities.Service", b =>
+                {
+                    b.Navigation("ReservationServices");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.User", b =>

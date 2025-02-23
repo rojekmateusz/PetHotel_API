@@ -23,6 +23,11 @@ namespace PetHotel.Infrastructure.Persistance
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Animal>()
+               .HasMany(a => a.Reservations)
+               .WithOne(r => r.Animal)
+               .HasForeignKey(a => a.AnimalId);
+
             modelBuilder.Entity<Owner>()
                 .HasMany(a => a.Animals)
                 .WithOne(o => o.Owner)
@@ -48,25 +53,24 @@ namespace PetHotel.Infrastructure.Persistance
                 .WithOne()
                 .HasForeignKey(r => r.HotelId);
 
-            modelBuilder.Entity<Animal>()
-                .HasMany(a => a.Reservations)
-                .WithOne(r => r.Animal) 
-                .HasForeignKey(a => a.AnimalId);
-
-            modelBuilder.Entity<ReservationService>()
-                .HasMany(a => a.Services)
-                .WithOne()
-                .HasForeignKey(a => a.ReservationServiceId);
-
-            modelBuilder.Entity<Reservation>()
-                .HasOne(r => r.ReservationService)
-                .WithOne(r => r.Reservation);
-
             modelBuilder.Entity<Hotel>()
                 .HasMany(a => a.Reviews)
                 .WithOne()
                 .HasForeignKey(a => a.HotelId);
 
+            modelBuilder.Entity<ReservationService>()
+                .HasKey(rs => new { rs.ServiceId, rs.ReservationId });
+                
+            modelBuilder.Entity<ReservationService>()
+                .HasOne(rs => rs.Service)
+                .WithMany(s => s.ReservationServices)
+                .HasForeignKey(rs => rs.ServiceId);
+
+            modelBuilder.Entity<ReservationService>()
+                .HasOne(rs => rs.Reservation)
+                .WithMany(s => s.ReservationServices)
+                .HasForeignKey(rs => rs.ServiceId);
+                        
             modelBuilder.Entity<User>()
                 .HasMany(a => a.Reviews)
                 .WithOne(r => r.User)

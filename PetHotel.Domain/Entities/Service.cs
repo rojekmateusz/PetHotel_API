@@ -9,6 +9,6 @@ public class Service
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    public int ReservationServiceId { get; set; }
+    public List<ReservationService> ReservationServices { get; set; } = [];
 
 }

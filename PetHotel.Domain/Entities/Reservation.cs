@@ -12,7 +12,7 @@ public class Reservation
     public int HotelId { get; set; }
     public Hotel? Hotel { get; set; }
     public int AnimalId { get; set; }
-    public Animal? Animal { get; set; } 
+    public Animal? Animal { get; set; }
 
-    public ReservationService? ReservationService { get; set; }
+    public List<ReservationService> ReservationServices { get; set; } = [];
 }

@@ -73,6 +73,23 @@ namespace PetHotel.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -148,6 +165,7 @@ namespace PetHotel.Infrastructure.Migrations
                     Breed = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: true),
                     Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OwnerID = table.Column<int>(type: "int", nullable: false)
@@ -278,43 +296,22 @@ namespace PetHotel.Infrastructure.Migrations
                 name: "ReservationServices",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReservationId = table.Column<int>(type: "int", nullable: false)
+                    ReservationId = table.Column<int>(type: "int", nullable: false),
+                    ServiceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReservationServices", x => x.Id);
+                    table.PrimaryKey("PK_ReservationServices", x => new { x.ServiceId, x.ReservationId });
                     table.ForeignKey(
-                        name: "FK_ReservationServices_Reservations_ReservationId",
-                        column: x => x.ReservationId,
+                        name: "FK_ReservationServices_Reservations_ServiceId",
+                        column: x => x.ServiceId,
                         principalTable: "Reservations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Services",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReservationServiceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Services", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Services_ReservationServices_ReservationServiceId",
-                        column: x => x.ReservationServiceId,
-                        principalTable: "ReservationServices",
+                        name: "FK_ReservationServices_Services_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -345,12 +342,6 @@ namespace PetHotel.Infrastructure.Migrations
                 column: "HotelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationServices_ReservationId",
-                table: "ReservationServices",
-                column: "ReservationId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_HotelId",
                 table: "Reviews",
                 column: "HotelId");
@@ -364,11 +355,6 @@ namespace PetHotel.Infrastructure.Migrations
                 name: "IX_Rooms_HotelId",
                 table: "Rooms",
                 column: "HotelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Services_ReservationServiceId",
-                table: "Services",
-                column: "ReservationServiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
@@ -386,28 +372,28 @@ namespace PetHotel.Infrastructure.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
+                name: "ReservationServices");
+
+            migrationBuilder.DropTable(
                 name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Rooms");
 
             migrationBuilder.DropTable(
-                name: "Services");
-
-            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "ReservationServices");
+                name: "Reservations");
+
+            migrationBuilder.DropTable(
+                name: "Services");
 
             migrationBuilder.DropTable(
                 name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "Animals");
