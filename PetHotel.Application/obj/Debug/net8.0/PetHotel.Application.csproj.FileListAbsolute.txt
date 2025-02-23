@@ -1,0 +1,15 @@
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\bin\Debug\net8.0\PetHotel.Application.deps.json
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\bin\Debug\net8.0\PetHotel.Application.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\bin\Debug\net8.0\PetHotel.Application.pdb
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\bin\Debug\net8.0\PetHotel.Domain.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\bin\Debug\net8.0\PetHotel.Domain.pdb
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.csproj.AssemblyReference.cache
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.AssemblyInfoInputs.cache
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.AssemblyInfo.cs
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.csproj.CoreCompileInputs.cache
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.DB922B47.Up2Date
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\refint\PetHotel.Application.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\PetHotel.Application.pdb
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Application\obj\Debug\net8.0\ref\PetHotel.Application.dll

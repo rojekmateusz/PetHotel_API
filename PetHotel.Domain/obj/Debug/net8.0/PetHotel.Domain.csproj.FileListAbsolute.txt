@@ -1,0 +1,11 @@
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\bin\Debug\net8.0\PetHotel.Domain.deps.json
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\bin\Debug\net8.0\PetHotel.Domain.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\bin\Debug\net8.0\PetHotel.Domain.pdb
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.AssemblyInfoInputs.cache
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.AssemblyInfo.cs
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.csproj.CoreCompileInputs.cache
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\refint\PetHotel.Domain.dll
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.pdb
+C:\Users\rojek\Documents\Repos\PetHotel\PetHotel.Domain\obj\Debug\net8.0\ref\PetHotel.Domain.dll
