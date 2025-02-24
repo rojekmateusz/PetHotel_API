@@ -345,3 +345,4 @@ C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\staticweba
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\PetHotel.27F48499.Up2Date
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\PetHotel.API.genruntimeconfig.cache
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\ref\PetHotel.API.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\AutoMapper.dll
