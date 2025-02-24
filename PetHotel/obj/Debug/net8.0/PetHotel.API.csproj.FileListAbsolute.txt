@@ -346,3 +346,5 @@ C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\PetHotel.2
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\PetHotel.API.genruntimeconfig.cache
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\ref\PetHotel.API.dll
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\MediatR.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\MediatR.Contracts.dll
