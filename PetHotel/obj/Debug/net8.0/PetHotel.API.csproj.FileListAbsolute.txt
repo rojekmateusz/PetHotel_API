@@ -353,3 +353,17 @@ C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Swashbuckl
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\PetHotel.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\libman.json
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Serilog.Sinks.File.dll
