@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.Hotel.Command.CreateHotel;
 using PetHotel.Application.Hotel.Command.DeleteHotel;
+using PetHotel.Application.Hotel.Command.UpdateHotel;
 using PetHotel.Application.Hotel.Queries.GetAllHotels;
 using PetHotel.Application.Hotel.Queries.GetHotelById;
 
@@ -40,5 +41,16 @@ namespace PetHotel.API.Controllers
             await mediator.Send(new DeleteHotelCommand(id));
             return NoContent();
         }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateHotel([FromRoute] int id, [FromBody] UpdateHotelCommand command)
+        {
+            command.Id = id;
+            await mediator.Send(command);
+            return NoContent();
+        }
+
     }
 }

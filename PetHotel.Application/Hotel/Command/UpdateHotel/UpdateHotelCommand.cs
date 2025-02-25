@@ -1,13 +1,10 @@
 ﻿using MediatR;
-using PetHotel.Application.Image.Dto;
-using PetHotel.Application.Reservatiion.Dto;
-using PetHotel.Application.Review.Dto;
-using PetHotel.Application.Room.Dto;
 
-namespace PetHotel.Application.Hotel.Command.CreateHotel;
+namespace PetHotel.Application.Hotel.Command.UpdateHotel;
 
-public class CreateHotelCommand : IRequest<int>
+public class UpdateHotelCommand: IRequest
 {
+    public int Id { get; set; }
     public string HotelName { get; set; } = default!;
     public string HotelsNIP { get; set; } = default!;
     public string HotelOwnerName { get; set; } = default!;
@@ -18,5 +15,5 @@ public class CreateHotelCommand : IRequest<int>
     public string Email { get; set; } = default!;
     public string? Description { get; set; }
     public string IsActive { get; set; } = default!;
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }

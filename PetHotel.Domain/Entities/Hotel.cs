@@ -4,7 +4,7 @@ public class Hotel
 {
     public int Id { get; set; }
     public string HotelName { get; set; } = default!;
-    public int HotelsNIP { get; set; } = default!;
+    public string HotelsNIP { get; set; } = default!;
     public string HotelOwnerName { get; set; } = default!;
     public string Address { get; set; } = default!;
     public string PhoneNumber { get; set; } = default!;

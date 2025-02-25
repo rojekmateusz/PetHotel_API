@@ -8,4 +8,6 @@ public interface IHotelRepository
     Task<IEnumerable<Hotel>> GetAllHotelsAsync(); 
     Task<Hotel?> GetHotelByIdAsync(int id);
     Task DeleteHotel(Hotel entity);
+    Task<int> UpdateHotel(Hotel entity);
+    Task SaveChanges();
 }
