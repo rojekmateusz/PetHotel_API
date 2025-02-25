@@ -21,3 +21,4 @@ C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel.Domain\obj\Debug\net8.0\Pet
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel.Domain\obj\Debug\net8.0\refint\PetHotel.Domain.dll
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.pdb
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel.Domain\obj\Debug\net8.0\ref\PetHotel.Domain.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel.Domain\obj\Debug\net8.0\PetHotel.Domain.csproj.AssemblyReference.cache

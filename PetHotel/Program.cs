@@ -1,5 +1,6 @@
 using PetHotel.API.Middlewares;
 using PetHotel.Application.Extensions;
+using PetHotel.Domain.Entities;
 using PetHotel.Infrastructure.Extensions;
 using Serilog;
 using Serilog.Events;
@@ -39,6 +40,8 @@ namespace PetHotel.API
             app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
+
+            app.MapIdentityApi<User>();
 
             app.UseAuthorization();
 

@@ -1,23 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Infrastructure.Persistance
 {
-    internal class PetHotelDbContext(DbContextOptions<PetHotelDbContext> options) : DbContext(options)
+    internal class PetHotelDbContext(DbContextOptions<PetHotelDbContext> options) : IdentityDbContext<User>(options)
     {
         internal DbSet<Hotel> Hotels { get; set; }
         internal DbSet<Room> Rooms { get; set; }
         internal DbSet<Animal> Animals { get; set; }
         internal DbSet<Owner> Owners { get; set; }
-        internal DbSet<User> Users { get; set; }
         internal DbSet<Reservation> Reservations { get; set; }
         internal DbSet<Image> Images { get; set; }
         internal DbSet<Review> Reviews { get; set; }
         internal DbSet<Payment> Payments { get; set; }
         internal DbSet<ReservationService> ReservationServices { get; set; }
-        internal DbSet<Role> Roles { get; set; }
         internal DbSet<Service> Services { get; set; }
-        internal DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +30,7 @@ namespace PetHotel.Infrastructure.Persistance
                 .HasMany(a => a.Animals)
                 .WithOne(o => o.Owner)
                 .HasForeignKey(a => a.OwnerID);
-                
+
             modelBuilder.Entity<Owner>()
                 .HasMany(a => a.Payments)
                 .WithOne(p => p.Owner)
@@ -60,7 +58,7 @@ namespace PetHotel.Infrastructure.Persistance
 
             modelBuilder.Entity<ReservationService>()
                 .HasKey(rs => new { rs.ServiceId, rs.ReservationId });
-                
+
             modelBuilder.Entity<ReservationService>()
                 .HasOne(rs => rs.Service)
                 .WithMany(s => s.ReservationServices)
@@ -70,25 +68,6 @@ namespace PetHotel.Infrastructure.Persistance
                 .HasOne(rs => rs.Reservation)
                 .WithMany(s => s.ReservationServices)
                 .HasForeignKey(rs => rs.ServiceId);
-                        
-            modelBuilder.Entity<User>()
-                .HasMany(a => a.Reviews)
-                .WithOne(r => r.User)
-                .HasForeignKey(r => r.UserId);
-
-            modelBuilder.Entity<UserRole>()
-                .HasKey(ur => new { ur.UserId, ur.RoleId }); 
-
-            modelBuilder.Entity<UserRole>()
-                .HasOne(ur => ur.User)
-                .WithMany(u => u.UserRoles)
-                .HasForeignKey(ur => ur.UserId);
-
-            modelBuilder.Entity<UserRole>()
-                .HasOne(ur => ur.Role)
-                .WithMany(r => r.UserRoles)
-                .HasForeignKey(ur => ur.RoleId);
-
         }
     }
 }

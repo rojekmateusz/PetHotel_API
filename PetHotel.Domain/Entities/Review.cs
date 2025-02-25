@@ -9,6 +9,4 @@ public class Review
     public DateTime UpdatedAt { get; set; }
 
     public int HotelId { get; set; }
-    public User? User { get; set; }
-    public int UserId { get; set; }
 }

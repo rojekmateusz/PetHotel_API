@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PetHotel.Domain.Entities;
 using PetHotel.Domain.Repositories;
 using PetHotel.Infrastructure.Persistance;
 using PetHotel.Infrastructure.Repositories;
@@ -18,5 +19,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAnimalRepository, AnimalRepository>();
         services.AddScoped<IOwnerRepository, OwnerRepository>();
         services.AddScoped<IHotelRepository, HotelRepository>();
+        services.AddIdentityApiEndpoints<User>()
+            .AddEntityFrameworkStores<PetHotelDbContext>();
     }
 }
