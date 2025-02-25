@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetHotel.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+865f0e617563704f4e2e41212363871b29647283")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cfbd6eb6c8131281b624a9cceb9e672aaeadf2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetHotel.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetHotel.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
