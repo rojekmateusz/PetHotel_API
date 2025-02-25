@@ -1,3 +1,4 @@
+using PetHotel.API.Middlewares;
 using PetHotel.Application.Extensions;
 using PetHotel.Infrastructure.Extensions;
 using Serilog;
@@ -21,10 +22,13 @@ namespace PetHotel
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
                 .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message:lj}{NewLine}{Exception}"));
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             if (app.Environment.IsDevelopment())
             {
