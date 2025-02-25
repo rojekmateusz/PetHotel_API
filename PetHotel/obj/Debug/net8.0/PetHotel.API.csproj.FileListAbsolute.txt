@@ -348,3 +348,8 @@ C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\ref\PetHot
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\MediatR.dll
 C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\rojek\Documents\Repos\PetHotel_API\PetHotel\obj\Debug\net8.0\PetHotel.API.MvcApplicationPartsAssemblyInfo.cs

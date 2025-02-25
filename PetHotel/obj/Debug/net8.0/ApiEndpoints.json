@@ -42,6 +42,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PetHotel.API.Controllers.HotelController",
+    "Method": "CreateHotel",
+    "RelativePath": "api/hotels",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "PetHotel.Application.Hotel.Command.CreateHotel.CreateHotelCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetHotel.API.Controllers.HotelController",
+    "Method": "GetAllHotel",
+    "RelativePath": "api/hotels",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PetHotel.API.Controllers.HotelController",
+    "Method": "GetById",
+    "RelativePath": "api/hotels/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PetHotel.API.Controllers.OwnerController",
     "Method": "CreateOwner",
     "RelativePath": "api/owners",

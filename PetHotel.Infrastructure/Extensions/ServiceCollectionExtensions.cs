@@ -17,5 +17,6 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IAnimalRepository, AnimalRepository>();
         services.AddScoped<IOwnerRepository, OwnerRepository>();
+        services.AddScoped<IHotelRepository, HotelRepository>();
     }
 }

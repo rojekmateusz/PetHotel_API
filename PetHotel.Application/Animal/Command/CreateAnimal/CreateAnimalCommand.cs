@@ -10,8 +10,7 @@ public class CreateAnimalCommand : IRequest<int>
     public int? Age { get; set; }
     public decimal? Weight { get; set; }
     public string? Note { get; set; }
+    public int OwnerID { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-    public int OwnerID { get; set; }
-
 }
