@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.Hotel.Command.CreateHotel;
+using PetHotel.Application.Hotel.Command.DeleteHotel;
 using PetHotel.Application.Hotel.Queries.GetAllHotels;
 using PetHotel.Application.Hotel.Queries.GetHotelById;
 
@@ -29,6 +30,13 @@ namespace PetHotel.API.Controllers
         {
             var hotel = await mediator.Send(new GetHotelByIdQuery(id));
             return Ok(hotel);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHotel([FromRoute] int id)
+        { 
+            await mediator.Send(new DeleteHotelCommand(id));
+            return NoContent();
         }
     }
 }

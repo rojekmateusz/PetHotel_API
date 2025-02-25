@@ -14,6 +14,12 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
         return entity.Id;
     }
 
+    public async Task DeleteHotel(Hotel entity)
+    {
+        dbContext.Hotels.Remove(entity);
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task<IEnumerable<Hotel>> GetAllHotelsAsync()
     {
         var hotels = await dbContext.Hotels.ToListAsync();
@@ -30,4 +36,6 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
             .FirstOrDefaultAsync(r => r.Id == id);
         return hotel;
     }
+
+    
 }

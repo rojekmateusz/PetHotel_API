@@ -84,6 +84,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PetHotel.API.Controllers.HotelController",
+    "Method": "DeleteHotel",
+    "RelativePath": "api/hotels/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PetHotel.API.Controllers.OwnerController",
     "Method": "CreateOwner",
     "RelativePath": "api/owners",
