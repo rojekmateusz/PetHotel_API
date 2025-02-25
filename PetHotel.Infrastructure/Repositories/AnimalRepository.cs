@@ -14,6 +14,12 @@ internal class AnimalRepository(PetHotelDbContext dbContext) : IAnimalRepository
         return entity.Id;
     }
 
+    public async Task DeleteAnimal(Animal entity)
+    {
+        dbContext.Animals.Remove(entity);
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task<IEnumerable<Animal>> GetAllAnimalsAsync()
     {
         var animals = await dbContext.Animals.ToListAsync();
@@ -26,5 +32,17 @@ internal class AnimalRepository(PetHotelDbContext dbContext) : IAnimalRepository
             .Include(r => r.Reservations)
             .FirstOrDefaultAsync(r => r.Id == id);
         return animal;
+    }
+
+    public async Task SaveChanges()
+    {
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task<int> UpdateAnimal(Animal entity)
+    {
+        dbContext.Animals.Update(entity);
+        await dbContext.SaveChangesAsync();
+        return entity.Id;
     }
 }
