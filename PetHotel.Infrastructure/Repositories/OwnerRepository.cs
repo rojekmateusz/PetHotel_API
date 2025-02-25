@@ -14,6 +14,12 @@ internal class OwnerRepository(PetHotelDbContext dbContext) : IOwnerRepository
         return entity.Id;
     }
 
+    public async Task DeleteOwner(Owner entity)
+    {
+        dbContext.Owners.Remove(entity);    
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task<IEnumerable<Owner>> GetAllOwnersAsync()
     {
         var owners = await dbContext.Owners.ToListAsync();
@@ -27,5 +33,17 @@ internal class OwnerRepository(PetHotelDbContext dbContext) : IOwnerRepository
             .Include(p => p.Payments)
             .FirstOrDefaultAsync(o => o.Id == id);
         return owner;
+    }
+
+    public async Task SaveChanges()
+    {
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task<int> UpdateOwner(Owner entity)
+    {
+        dbContext.Owners.Update(entity);
+        await dbContext.SaveChangesAsync();
+        return entity.Id;
     }
 }
