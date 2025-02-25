@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PetHotel.Application.Animal.Command.CreateAnimal;
-using PetHotel.Application.Animal.Command.DeleteAnimal;
-using PetHotel.Application.Animal.Command.UpdateAnimal;
-using PetHotel.Application.Animal.Dto;
-using PetHotel.Application.Animal.Queries.GetAllAnimal;
-using PetHotel.Application.Animal.Queries.GetAnimalById;
+using PetHotel.Application.UseCases.Animal.Command.DeleteAnimal;
+using PetHotel.Application.UseCases.Animal.Queries.GetAllAnimals;
+using PetHotel.Application.UseCases.Animal.Queries.GetAnimalById;
+using PetHotel.Application.UseCases.Animal.Command.CreateAnimal;
+using PetHotel.Application.UseCases.Animal.Command.UpdateAnimal;
+using PetHotel.Application.UseCases.Animal.Dto;
 
 namespace PetHotel.API.Controllers
 {

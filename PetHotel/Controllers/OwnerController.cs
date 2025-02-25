@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PetHotel.Application.Owner.Command.CreateOwner;
-using PetHotel.Application.Owner.Command.DeleteOwner;
-using PetHotel.Application.Owner.Command.UpdateOwner;
-using PetHotel.Application.Owner.Dto;
-using PetHotel.Application.Owner.Queries.GetAllOwners;
-using PetHotel.Application.Owner.Queries.GetOwnerById;
+using PetHotel.Application.UseCases.Owner.Command.CreateOwner;
+using PetHotel.Application.UseCases.Owner.Command.DeleteOwner;
+using PetHotel.Application.UseCases.Owner.Command.UpdateOwner;
+using PetHotel.Application.UseCases.Owner.Dto;
+using PetHotel.Application.UseCases.Owner.Queries.GetAllOwners;
+using PetHotel.Application.UseCases.Owner.Queries.GetOwnerById;
 
 namespace PetHotel.API.Controllers;
 

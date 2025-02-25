@@ -9,13 +9,13 @@
     "Parameters": [
       {
         "Name": "command",
-        "Type": "PetHotel.Application.Animal.Command.CreateAnimal.CreateAnimalCommand",
+        "Type": "PetHotel.Application.UseCases.Animal.Command.CreateAnimal.CreateAnimalCommand",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Animal.Dto.AnimalDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Animal.Dto.AnimalDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -35,7 +35,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Animal.Dto.AnimalDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Animal.Dto.AnimalDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Animal.Dto.AnimalDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Animal.Dto.AnimalDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -117,7 +117,7 @@
       },
       {
         "Name": "command",
-        "Type": "PetHotel.Application.Animal.Command.UpdateAnimal.UpdateAnimalCommand",
+        "Type": "PetHotel.Application.UseCases.Animal.Command.UpdateAnimal.UpdateAnimalCommand",
         "IsRequired": true
       }
     ],
@@ -148,13 +148,13 @@
     "Parameters": [
       {
         "Name": "command",
-        "Type": "PetHotel.Application.Hotel.Command.CreateHotel.CreateHotelCommand",
+        "Type": "PetHotel.Application.UseCases.Hotel.Command.CreateHotel.CreateHotelCommand",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Hotel.Dto.HotelDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Hotel.Dto.HotelDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -174,7 +174,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Hotel.Dto.HotelDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Hotel.Dto.HotelDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -200,7 +200,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Hotel.Dto.HotelDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Hotel.Dto.HotelDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -256,7 +256,7 @@
       },
       {
         "Name": "command",
-        "Type": "PetHotel.Application.Hotel.Command.UpdateHotel.UpdateHotelCommand",
+        "Type": "PetHotel.Application.UseCases.Hotel.Command.UpdateHotel.UpdateHotelCommand",
         "IsRequired": true
       }
     ],
@@ -287,13 +287,13 @@
     "Parameters": [
       {
         "Name": "command",
-        "Type": "PetHotel.Application.Owner.Command.CreateOwner.CreateOwnerCommand",
+        "Type": "PetHotel.Application.UseCases.Owner.Command.CreateOwner.CreateOwnerCommand",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Owner.Dto.OwnerDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Owner.Dto.OwnerDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -313,7 +313,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Owner.Dto.OwnerDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Owner.Dto.OwnerDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -339,7 +339,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.Owner.Dto.OwnerDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Application.UseCases.Owner.Dto.OwnerDto, PetHotel.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -395,7 +395,7 @@
       },
       {
         "Name": "command",
-        "Type": "PetHotel.Application.Owner.Command.UpdateOwner.UpdateOwnerCommand",
+        "Type": "PetHotel.Application.UseCases.Owner.Command.UpdateOwner.UpdateOwnerCommand",
         "IsRequired": true
       }
     ],
