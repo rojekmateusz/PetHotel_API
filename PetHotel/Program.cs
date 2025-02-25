@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using PetHotel.API.Middlewares;
 using PetHotel.Application.Extensions;
 using PetHotel.Domain.Entities;
@@ -18,7 +19,28 @@ namespace PetHotel.API
             builder.Services.AddControllers();
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddApplication();
-            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                 {
+                     {
+                        new OpenApiSecurityScheme
+                             {
+                                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearerAuth"}
+                             },
+                        []
+                     }
+
+                });
+            });
+
             builder.Host.UseSerilog((context, configuration) => configuration
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
@@ -41,7 +63,7 @@ namespace PetHotel.API
 
             app.UseHttpsRedirection();
 
-            app.MapIdentityApi<User>();
+            app.MapGroup("api/identity").MapIdentityApi<User>();
 
             app.UseAuthorization();
 
