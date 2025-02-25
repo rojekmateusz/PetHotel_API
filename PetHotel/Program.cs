@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using PetHotel.API.Extensions;
 using PetHotel.API.Middlewares;
 using PetHotel.Application.Extensions;
 using PetHotel.Domain.Entities;
@@ -15,35 +16,10 @@ namespace PetHotel.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            builder.Services.AddControllers();
+           
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddApplication();
-
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
-                {
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "Bearer"
-                });
-
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                 {
-                     {
-                        new OpenApiSecurityScheme
-                             {
-                                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearerAuth"}
-                             },
-                        []
-                     }
-
-                });
-            });
-
-            builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
-                
-            builder.Services.AddScoped<ErrorHandlingMiddleware>();
+            builder.AddPresentation();
 
             var app = builder.Build();
 
