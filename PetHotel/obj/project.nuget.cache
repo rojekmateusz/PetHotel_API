@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dozUU8JT2N0=",
+  "dgSpecHash": "p/cadKiJKoI=",
   "success": true,
   "projectFilePath": "C:\\Users\\rojek\\Documents\\Repos\\PetHotel_API\\PetHotel\\PetHotel.API.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.common\\4.8.0\\microsoft.codeanalysis.common.4.8.0.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.8.0\\microsoft.codeanalysis.csharp.4.8.0.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.8.0\\microsoft.codeanalysis.csharp.workspaces.4.8.0.nupkg.sha512",
+    "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.metrics\\3.3.4\\microsoft.codeanalysis.metrics.3.3.4.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.8.0\\microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.workspaces.msbuild\\4.8.0\\microsoft.codeanalysis.workspaces.msbuild.4.8.0.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

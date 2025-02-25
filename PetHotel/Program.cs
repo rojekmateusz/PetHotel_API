@@ -4,7 +4,7 @@ using PetHotel.Infrastructure.Extensions;
 using Serilog;
 using Serilog.Events;
 
-namespace PetHotel
+namespace PetHotel.API
 {
     public class Program
     {

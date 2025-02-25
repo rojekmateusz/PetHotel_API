@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetHotel.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22c4ab9ab4a912aa0b4feb5f0926b1c95750acf2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94750340df22b77e36edd98eb1a9abe83c978fe2")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetHotel.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetHotel.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

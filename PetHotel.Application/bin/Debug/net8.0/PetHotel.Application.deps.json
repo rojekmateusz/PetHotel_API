@@ -10,6 +10,7 @@
         "dependencies": {
           "AutoMapper": "14.0.0",
           "MediatR": "12.4.1",
+          "Microsoft.CodeAnalysis.Metrics": "3.3.4",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
           "PetHotel.Domain": "1.0.0"
         },
@@ -48,6 +49,7 @@
           }
         }
       },
+      "Microsoft.CodeAnalysis.Metrics/3.3.4": {},
       "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
@@ -97,6 +99,9 @@
         }
       },
       "PetHotel.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Metrics": "3.3.4"
+        },
         "runtime": {
           "PetHotel.Domain.dll": {
             "assemblyVersion": "1.0.0",
@@ -132,6 +137,13 @@
       "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
       "path": "mediatr.contracts/2.0.1",
       "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
+    },
+    "Microsoft.CodeAnalysis.Metrics/3.3.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5wQzBxMkzGOXZR+F70b580eam5JqWKoBTYsXd1db886yc0v7cahuvtk9XL3LQvNFgObNDxOtYx6HpBmV0PQVCA==",
+      "path": "microsoft.codeanalysis.metrics/3.3.4",
+      "hashPath": "microsoft.codeanalysis.metrics.3.3.4.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
       "type": "package",

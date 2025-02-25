@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "pZY7mOJAtBc=",
+  "dgSpecHash": "UqvtV9LLiRQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\rojek\\Documents\\Repos\\PetHotel_API\\PetHotel.Application\\PetHotel.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rojek\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\rojek\\.nuget\\packages\\microsoft.codeanalysis.metrics\\3.3.4\\microsoft.codeanalysis.metrics.3.3.4.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.2\\microsoft.extensions.dependencyinjection.abstractions.9.0.2.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.2\\microsoft.extensions.logging.abstractions.9.0.2.nupkg.sha512",
     "C:\\Users\\rojek\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",

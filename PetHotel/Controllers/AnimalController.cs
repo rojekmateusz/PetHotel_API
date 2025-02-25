@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.Animal.Command.CreateAnimal;
+using PetHotel.Application.Animal.Dto;
 using PetHotel.Application.Animal.Queries.GetAllAnimal;
 using PetHotel.Application.Animal.Queries.GetAnimalById;
 
@@ -11,14 +12,14 @@ namespace PetHotel.API.Controllers
     public class AnimalController(IMediator mediator): ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> CreateAnimal([FromBody] CreateAnimalCommand command)
+        public async Task<ActionResult<IEnumerable<AnimalDto>>> CreateAnimal([FromBody] CreateAnimalCommand command)
         {
             int id = await mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new {id}, null);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAnimal()
+        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetAllAnimal()
         {
             var animals = await mediator.Send(new GetAllAnimalsQuery());
             return Ok(animals); 

@@ -48,6 +48,12 @@
           }
         }
       },
+      "Microsoft.CodeAnalysis.Metrics/3.3.4": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Microsoft.CodeAnalysis.Metrics.targets": {}
+        }
+      },
       "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
         "type": "package",
         "compile": {
@@ -146,6 +152,9 @@
       "PetHotel.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Metrics": "3.3.4"
+        },
         "compile": {
           "bin/placeholder/PetHotel.Domain.dll": {}
         },
@@ -200,6 +209,81 @@
         "lib/netstandard2.0/MediatR.Contracts.xml",
         "mediatr.contracts.2.0.1.nupkg.sha512",
         "mediatr.contracts.nuspec"
+      ]
+    },
+    "Microsoft.CodeAnalysis.Metrics/3.3.4": {
+      "sha512": "5wQzBxMkzGOXZR+F70b580eam5JqWKoBTYsXd1db886yc0v7cahuvtk9XL3LQvNFgObNDxOtYx6HpBmV0PQVCA==",
+      "type": "package",
+      "path": "microsoft.codeanalysis.metrics/3.3.4",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "Metrics.Legacy/Metrics.Legacy.exe",
+        "Metrics.Legacy/Metrics.Legacy.exe.config",
+        "Metrics.Legacy/Metrics.Legacy.xml",
+        "Metrics.Legacy/Microsoft.Build.Locator.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.CSharp.Features.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.CSharp.Workspaces.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.CSharp.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.Features.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.FlowAnalysis.Utilities.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.VisualBasic.Features.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.VisualBasic.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.Workspaces.dll",
+        "Metrics.Legacy/Microsoft.CodeAnalysis.dll",
+        "Metrics.Legacy/Microsoft.DiaSymReader.dll",
+        "Metrics.Legacy/System.Buffers.dll",
+        "Metrics.Legacy/System.Collections.Immutable.dll",
+        "Metrics.Legacy/System.Composition.AttributedModel.dll",
+        "Metrics.Legacy/System.Composition.Convention.dll",
+        "Metrics.Legacy/System.Composition.Hosting.dll",
+        "Metrics.Legacy/System.Composition.Runtime.dll",
+        "Metrics.Legacy/System.Composition.TypedParts.dll",
+        "Metrics.Legacy/System.Memory.dll",
+        "Metrics.Legacy/System.Numerics.Vectors.dll",
+        "Metrics.Legacy/System.Reflection.Metadata.dll",
+        "Metrics.Legacy/System.Runtime.CompilerServices.Unsafe.dll",
+        "Metrics.Legacy/System.Text.Encoding.CodePages.dll",
+        "Metrics.Legacy/System.Threading.Tasks.Extensions.dll",
+        "Metrics/Metrics.exe",
+        "Metrics/Metrics.exe.config",
+        "Metrics/Metrics.xml",
+        "Metrics/Microsoft.Build.Locator.dll",
+        "Metrics/Microsoft.CodeAnalysis.CSharp.Features.dll",
+        "Metrics/Microsoft.CodeAnalysis.CSharp.Workspaces.dll",
+        "Metrics/Microsoft.CodeAnalysis.CSharp.dll",
+        "Metrics/Microsoft.CodeAnalysis.Features.dll",
+        "Metrics/Microsoft.CodeAnalysis.FlowAnalysis.Utilities.dll",
+        "Metrics/Microsoft.CodeAnalysis.VisualBasic.Features.dll",
+        "Metrics/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll",
+        "Metrics/Microsoft.CodeAnalysis.VisualBasic.dll",
+        "Metrics/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll",
+        "Metrics/Microsoft.CodeAnalysis.Workspaces.dll",
+        "Metrics/Microsoft.CodeAnalysis.dll",
+        "Metrics/Microsoft.DiaSymReader.dll",
+        "Metrics/System.Buffers.dll",
+        "Metrics/System.Collections.Immutable.dll",
+        "Metrics/System.Composition.AttributedModel.dll",
+        "Metrics/System.Composition.Convention.dll",
+        "Metrics/System.Composition.Hosting.dll",
+        "Metrics/System.Composition.Runtime.dll",
+        "Metrics/System.Composition.TypedParts.dll",
+        "Metrics/System.Memory.dll",
+        "Metrics/System.Numerics.Vectors.dll",
+        "Metrics/System.Reflection.Metadata.dll",
+        "Metrics/System.Runtime.CompilerServices.Unsafe.dll",
+        "Metrics/System.Text.Encoding.CodePages.dll",
+        "Metrics/System.Threading.Tasks.Extensions.dll",
+        "ThirdPartyNotices.txt",
+        "buildTransitive/Microsoft.CodeAnalysis.Metrics.targets",
+        "microsoft.codeanalysis.metrics.3.3.4.nupkg.sha512",
+        "microsoft.codeanalysis.metrics.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
@@ -422,6 +506,7 @@
     "net8.0": [
       "AutoMapper >= 14.0.0",
       "MediatR >= 12.4.1",
+      "Microsoft.CodeAnalysis.Metrics >= 3.3.4",
       "Microsoft.Extensions.Logging.Abstractions >= 9.0.2",
       "PetHotel.Domain >= 1.0.0"
     ]
@@ -487,6 +572,10 @@
           "MediatR": {
             "target": "Package",
             "version": "[12.4.1, )"
+          },
+          "Microsoft.CodeAnalysis.Metrics": {
+            "target": "Package",
+            "version": "[3.3.4, )"
           },
           "Microsoft.Extensions.Logging.Abstractions": {
             "target": "Package",

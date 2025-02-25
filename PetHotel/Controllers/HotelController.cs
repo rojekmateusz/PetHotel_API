@@ -33,6 +33,8 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteHotel([FromRoute] int id)
         { 
             await mediator.Send(new DeleteHotelCommand(id));
