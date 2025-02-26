@@ -2,15 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Hotel.Queries.GetHotelById;
 using PetHotel.Application.UseCases.Review.Command.CreateReview;
-using PetHotel.Application.UseCases.Review.Queries.GetReviewsByHotelId;
 using PetHotel.Application.UseCases.Review.Dto;
 using PetHotel.Application.UseCases.Review.Queries.GetReviewByIdForHotel;
 using PetHotel.Application.UseCases.Review.Command.DeleteReview;
 using PetHotel.Application.UseCases.Review.Command.UpdateReview;
+
 namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/hotels/{HotelId}/reviews")]
+
 public class ReviewController(IMediator mediator): ControllerBase
 {
     [HttpPost]

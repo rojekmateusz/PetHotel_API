@@ -16,7 +16,6 @@ public class CreateReviewCommandHandler(ILogger<CreateReviewCommandHandler> logg
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
 
         var review = mapper.Map<Domain.Entities.Review>(request);
-        await reviewRepository.CreateReview(review);
-        return review.Id;
+        return await reviewRepository.CreateReview(review);
     }
 }
