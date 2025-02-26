@@ -11,11 +11,9 @@ public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger
     public async Task Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting hotel with id {Id}", request.Id);
-        var hotel = await hotelRepository.GetHotelByIdAsync(request.Id);
-        if (hotel is null)
-        {
-            throw new NotFoundException(nameof(hotel), request.Id.ToString());
-        }
+        var hotel = await hotelRepository.GetHotelByIdAsync(request.Id)
+            ?? throw new NotFoundException(nameof(Hotel), request.Id.ToString());
+       
         await hotelRepository.DeleteHotel(hotel);
     }
 }

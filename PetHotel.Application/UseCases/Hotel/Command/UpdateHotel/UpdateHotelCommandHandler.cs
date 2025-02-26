@@ -11,11 +11,9 @@ public class UpdateHotelCommandHandler(ILogger<UpdateHotelCommandHandler> logger
     public async Task Handle(UpdateHotelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Updating hotel with Id: {@HotelId} with {@UpdatedHotel}", request.Id, request);
-        var hotel = await hotelRepository.GetHotelByIdAsync(request.Id);
-        if (hotel == null)
-        {
-            throw new NotFoundException(nameof(Hotel), request.Id.ToString());
-        }
+        var hotel = await hotelRepository.GetHotelByIdAsync(request.Id)
+            ?? throw new NotFoundException(nameof(Hotel), request.Id.ToString());
+
         mapper.Map(request, hotel);
         await hotelRepository.SaveChanges();
     }

@@ -5,6 +5,8 @@ using PetHotel.Application.UseCases.Review.Command.CreateReview;
 using PetHotel.Application.UseCases.Review.Queries.GetReviewsByHotelId;
 using PetHotel.Application.UseCases.Review.Dto;
 using PetHotel.Application.UseCases.Review.Queries.GetReviewByIdForHotel;
+using PetHotel.Application.UseCases.Review.Command.DeleteReview;
+using PetHotel.Application.UseCases.Review.Command.UpdateReview;
 namespace PetHotel.API.Controllers;
 
 [ApiController]
@@ -33,4 +35,23 @@ public class ReviewController(IMediator mediator): ControllerBase
         return Ok(review);
     }
 
+    [HttpDelete("{reviewId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteReview([FromRoute] int reviewId, [FromRoute] int HotelId)
+    {
+        await mediator.Send(new DeleteReviewCommand(reviewId, HotelId));
+        return NoContent();
+    }
+
+    [HttpPatch("{reviewId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateReview([FromRoute] int reviewId, [FromRoute] int HotelId, UpdateReviewCommand command)
+    {
+        command.Id = reviewId;
+        command.HotelId = HotelId;
+        await mediator.Send(command);
+        return Ok();
+    }
 }

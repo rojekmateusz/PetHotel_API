@@ -9,5 +9,6 @@ public class ReviewDto
     public string Comment { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    public int HotelId { get; set; }
 
 }

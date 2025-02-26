@@ -50,7 +50,7 @@ namespace PetHotel.API.Controllers
         {
             command.Id = id;
             await mediator.Send(command);
-            return NoContent();
+            return Ok();
         }
     }
 }

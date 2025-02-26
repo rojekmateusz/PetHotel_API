@@ -48,6 +48,6 @@ public class OwnerController(IMediator mediator): ControllerBase
     {
         command.Id = id;
         await mediator.Send(command);
-        return NoContent();
+        return Ok();
     }
 }
