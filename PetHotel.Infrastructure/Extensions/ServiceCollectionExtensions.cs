@@ -16,10 +16,14 @@ public static class ServiceCollectionExtensions
         var connectionString = configuration.GetConnectionString("PetHotelDb");
         services.AddDbContext<PetHotelDbContext>(options => options.UseSqlServer(connectionString)
             .EnableSensitiveDataLogging());
+
+        services.AddIdentityApiEndpoints<User>()
+             .AddEntityFrameworkStores<PetHotelDbContext>();
+
         services.AddScoped<IAnimalRepository, AnimalRepository>();
         services.AddScoped<IOwnerRepository, OwnerRepository>();
         services.AddScoped<IHotelRepository, HotelRepository>();
-        services.AddIdentityApiEndpoints<User>()
-            .AddEntityFrameworkStores<PetHotelDbContext>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
+
     }
 }

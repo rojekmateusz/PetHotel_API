@@ -185,6 +185,63 @@
     ]
   },
   {
+    "ContainingType": "PetHotel.API.Controllers.ReviewController",
+    "Method": "CreateReview",
+    "RelativePath": "api/hotels/{HotelId}/reviews",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HotelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "command",
+        "Type": "PetHotel.Application.UseCases.Review.Command.CreateReview.CreateReviewCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Domain.Entities.Review, PetHotel.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PetHotel.API.Controllers.ReviewController",
+    "Method": "GetReviewsByHotelId",
+    "RelativePath": "api/hotels/{HotelId}/reviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HotelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PetHotel.Domain.Entities.Review, PetHotel.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "PetHotel.API.Controllers.HotelController",
     "Method": "GetById",
     "RelativePath": "api/hotels/{id}",
