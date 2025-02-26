@@ -12,4 +12,9 @@ internal class RoomRepository(PetHotelDbContext dbContext) : IRoomRepository
         await dbContext.SaveChangesAsync();
         return entity.Id;
     }
+
+    public Task GetAllRooms(Room entity)
+    {
+        throw new NotImplementedException();
+    }
 }

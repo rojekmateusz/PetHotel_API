@@ -15,7 +15,7 @@ public class GetReviewsByHotelIdQueryHandler(ILogger<GetReviewsByHotelIdQueryHan
         logger.LogInformation("Getting reviews for hotel {HotelId}", request.HotelID);
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelID)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelID.ToString());
-        var results = mapper.Map<IEnumerable<ReviewDto>>(hotel);
+        var results = mapper.Map<IEnumerable<ReviewDto>>(hotel.Reviews);
         return results;
     }
 }
