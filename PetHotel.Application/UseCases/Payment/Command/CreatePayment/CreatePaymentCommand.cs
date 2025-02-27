@@ -1,12 +1,12 @@
-﻿namespace PetHotel.Application.UseCases.Payment.Dto;
+﻿using MediatR;
 
-public class PaymentDto
+namespace PetHotel.Application.UseCases.Payment.Command.CreatePayment;
+
+public class CreatePaymentCommand: IRequest<int>
 {
-    public int Id { get; set; }
     public decimal Amount { get; set; } = default!;
     public DateTime PaymentDate { get; set; } = default!;
     public string Status { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
     public int OwnerId { get; set; }
 }
