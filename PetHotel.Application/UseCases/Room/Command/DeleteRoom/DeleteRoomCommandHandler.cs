@@ -14,7 +14,8 @@ public class DeleteRoomCommandHandler(ILogger<DeleteRoomCommandHandler> logger, 
         logger.LogInformation("Deleting room with Id: {@RoomId} in Hotel: {@HotelId}", request.RoomID, request.HotelID);
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelID)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelID.ToString());
-        var room = hotel.Rooms.FirstOrDefault(r => r.Id == request.RoomID);
+        var room = hotel.Rooms.FirstOrDefault(r => r.Id == request.RoomID)
+            ?? throw new NotFoundException(nameof(Room), request.RoomID.ToString());
         await roomRepository.DeleteRoom(room);
     }
 }

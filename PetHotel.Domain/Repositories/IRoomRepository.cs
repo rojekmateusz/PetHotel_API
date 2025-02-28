@@ -6,5 +6,6 @@ public interface IRoomRepository
 {
     Task<int> CreateRoom(Room entity);
     Task DeleteRoom(Room entity);
+    Task SaveChanges();
 }
 

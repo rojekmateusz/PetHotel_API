@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Room.Command.CreateRoom;
 using PetHotel.Application.UseCases.Room.Command.DeleteRoom;
+using PetHotel.Application.UseCases.Room.Command.UpdateRoom;
 using PetHotel.Application.UseCases.Room.Dto;
 using PetHotel.Application.UseCases.Room.Queries.GetAllRoomsByHotelId;
 using PetHotel.Application.UseCases.Room.Queries.GetRoomById;
@@ -45,14 +46,14 @@ public class RoomController(IMediator mediator): ControllerBase
         return NoContent();
     }
 
-    //[HttpPatch("{roomId}")]
-    //[ProducesResponseType(StatusCodes.Status204NoContent)]
-    //[ProducesResponseType(StatusCodes.Status404NotFound)]
-    //public async Task<IActionResult> UpdateRoom([FromRoute] int HotelId, [FromRoute] int roomId, UpdateRoomCommand command)
-    //{ 
-    //    command.RoomId = roomId;
-    //    command.HotelId = HotelId;
-    //    await mediator.Send(command);
-    //    return Ok();
-    //}
+    [HttpPatch("{roomId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateRoom([FromRoute] int HotelId, [FromRoute] int roomId, UpdateRoomCommand command)
+    {
+        command.Id = roomId;
+        command.HotelId = HotelId;
+        await mediator.Send(command);
+        return Ok();
+    }
 }

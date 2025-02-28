@@ -18,4 +18,9 @@ internal class RoomRepository(PetHotelDbContext dbContext) : IRoomRepository
         dbContext.Remove(entity);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task SaveChanges()
+    {
+        await dbContext.SaveChangesAsync();
+    }
 }
