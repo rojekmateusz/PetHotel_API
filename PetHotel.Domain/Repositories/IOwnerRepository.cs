@@ -7,7 +7,6 @@ namespace PetHotel.Domain.Repositories
         Task<int> CreateOwner(Owner entity);
         Task<IEnumerable<Owner>> GetAllOwnersAsync();
         Task<Owner?> GetOwnerByIdAsync(int id);
-        Task<int> UpdateOwner(Owner entity);
         Task DeleteOwner(Owner entity);
         Task SaveChanges();
     }

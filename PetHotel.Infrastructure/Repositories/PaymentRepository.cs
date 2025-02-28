@@ -23,11 +23,4 @@ internal class PaymentRepository(PetHotelDbContext dbContext) : IPaymentReposito
     {
         await dbContext.SaveChangesAsync();
     }
-
-    public async Task<int> UpdatePayment(Payment entity)
-    {
-        dbContext.Payments.Update(entity);
-        await dbContext.SaveChangesAsync();
-        return entity.Id;
-    }
 }

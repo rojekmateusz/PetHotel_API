@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using PetHotel.Application.UseCases.Hotel.Command.UpdateHotel;
 using PetHotel.Application.UseCases.Owner.Command.CreateOwner;
+using PetHotel.Application.UseCases.Owner.Command.UpdateOwner;
 
 namespace PetHotel.Application.UseCases.Owner.Dto;
 
@@ -12,5 +14,6 @@ public class OwnerProfile : Profile
             .ForMember(p => p.Payments, opt => opt.MapFrom(src => src.Payments));
 
         CreateMap<CreateOwnerCommand, Domain.Entities.Owner>();
+        CreateMap<UpdateOwnerCommand, Domain.Entities.Owner>();    
     }
 }

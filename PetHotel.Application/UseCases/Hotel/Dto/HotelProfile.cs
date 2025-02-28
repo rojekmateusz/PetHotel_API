@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PetHotel.Application.UseCases.Hotel.Command.CreateHotel;
+using PetHotel.Application.UseCases.Hotel.Command.UpdateHotel;
 
 namespace PetHotel.Application.UseCases.Hotel.Dto;
 
@@ -14,5 +15,6 @@ public class HotelProfile : Profile
             .ForMember(r => r.Reviews, opt => opt.MapFrom(src => src.Reviews));
 
         CreateMap<CreateHotelCommand, Domain.Entities.Hotel>();
+        CreateMap<UpdateHotelCommand, Domain.Entities.Hotel>();
     }
 }

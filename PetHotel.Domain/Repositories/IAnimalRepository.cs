@@ -8,6 +8,5 @@ public interface IAnimalRepository
     Task<IEnumerable<Animal>> GetAllAnimalsAsync();
     Task<Animal?> GetAnimalByIdAsync(int id);
     Task DeleteAnimal(Animal entity);
-    Task<int> UpdateAnimal(Animal entity);
     Task SaveChanges();
 }

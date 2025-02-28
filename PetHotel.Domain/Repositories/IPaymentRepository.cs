@@ -6,6 +6,5 @@ public interface IPaymentRepository
 {
     Task<int> CreatePayment(Payment entity);
     Task DeletePayment(Payment entity);
-    Task<int> UpdatePayment(Payment entity);
     Task SaveChanges();
 }

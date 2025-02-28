@@ -16,7 +16,7 @@ internal class OwnerRepository(PetHotelDbContext dbContext) : IOwnerRepository
 
     public async Task DeleteOwner(Owner entity)
     {
-        dbContext.Owners.Remove(entity);    
+        dbContext.Owners.Remove(entity);
         await dbContext.SaveChangesAsync();
     }
 
@@ -38,12 +38,5 @@ internal class OwnerRepository(PetHotelDbContext dbContext) : IOwnerRepository
     public async Task SaveChanges()
     {
         await dbContext.SaveChangesAsync();
-    }
-
-    public async Task<int> UpdateOwner(Owner entity)
-    {
-        dbContext.Owners.Update(entity);
-        await dbContext.SaveChangesAsync();
-        return entity.Id;
     }
 }

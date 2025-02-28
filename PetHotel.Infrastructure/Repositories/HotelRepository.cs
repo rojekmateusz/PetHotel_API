@@ -39,13 +39,6 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
 
     public async Task SaveChanges()
     {
-        await dbContext.SaveChangesAsync();   
-    }
-
-    public async Task<int> UpdateHotel(Hotel entity)
-    {
-        dbContext.Hotels.Update(entity);
         await dbContext.SaveChangesAsync();
-        return entity.Id;
     }
 }

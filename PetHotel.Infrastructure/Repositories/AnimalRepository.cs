@@ -38,11 +38,4 @@ internal class AnimalRepository(PetHotelDbContext dbContext) : IAnimalRepository
     {
         await dbContext.SaveChangesAsync();
     }
-
-    public async Task<int> UpdateAnimal(Animal entity)
-    {
-        dbContext.Animals.Update(entity);
-        await dbContext.SaveChangesAsync();
-        return entity.Id;
-    }
 }

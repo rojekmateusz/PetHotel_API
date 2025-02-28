@@ -23,11 +23,4 @@ internal class ReviewRepository(PetHotelDbContext dbContext) : IReviewRepository
     {
         await dbContext.SaveChangesAsync();
     }
-
-    public async Task<int> UpdateReview(Review entity)
-    {
-        dbContext.Update(entity);
-        await dbContext.SaveChangesAsync();
-        return entity.Id;
-    }
 }
