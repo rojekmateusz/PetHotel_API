@@ -13,8 +13,9 @@ internal class RoomRepository(PetHotelDbContext dbContext) : IRoomRepository
         return entity.Id;
     }
 
-    public Task GetAllRooms(Room entity)
+    public async Task DeleteRoom(Room entity)
     {
-        throw new NotImplementedException();
+        dbContext.Remove(entity);
+        await dbContext.SaveChangesAsync();
     }
 }

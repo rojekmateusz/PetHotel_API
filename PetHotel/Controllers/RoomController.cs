@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Room.Command.CreateRoom;
+using PetHotel.Application.UseCases.Room.Command.DeleteRoom;
 using PetHotel.Application.UseCases.Room.Dto;
 using PetHotel.Application.UseCases.Room.Queries.GetAllRoomsByHotelId;
 using PetHotel.Application.UseCases.Room.Queries.GetRoomById;
@@ -15,7 +16,9 @@ public class RoomController(IMediator mediator): ControllerBase
     public async Task<ActionResult<IEnumerable<RoomDto>>> CreateRoom([FromRoute] int HotelId, CreateRoomCommand command)
     {
         command.HotelId = HotelId;
+        //int id = 
         await mediator.Send(command);
+        //return CreatedAtAction(nameof(GetRoomById), new { id }, null ); cos tu jest nie tak z kodem
         return Created();
     }
 
@@ -27,10 +30,29 @@ public class RoomController(IMediator mediator): ControllerBase
     }
 
     [HttpGet("{roomId}")]
-    public async Task<ActionResult<IEnumerable<RoomDto>>> GetRoomById([FromRoute] int roomId, int HotelId)
+    public async Task<ActionResult<IEnumerable<RoomDto>>> GetRoomById([FromRoute] int HotelId, [FromRoute] int roomId)
     {
         var room = await mediator.Send(new GetRoomByIdQuery(HotelId, roomId));
         return Ok(room);
     }
 
+    [HttpDelete("{roomId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteRoom([FromRoute] int roomId, [FromRoute] int HotelId)
+    {
+        await mediator.Send(new DeleteRoomCommand(roomId, HotelId));
+        return NoContent();
+    }
+
+    //[HttpPatch("{roomId}")]
+    //[ProducesResponseType(StatusCodes.Status204NoContent)]
+    //[ProducesResponseType(StatusCodes.Status404NotFound)]
+    //public async Task<IActionResult> UpdateRoom([FromRoute] int HotelId, [FromRoute] int roomId, UpdateRoomCommand command)
+    //{ 
+    //    command.RoomId = roomId;
+    //    command.HotelId = HotelId;
+    //    await mediator.Send(command);
+    //    return Ok();
+    //}
 }

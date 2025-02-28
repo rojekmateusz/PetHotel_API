@@ -65,12 +65,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "roomId",
+        "Name": "HotelId",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "HotelId",
+        "Name": "roomId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -86,6 +86,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "PetHotel.API.Controllers.RoomController",
+    "Method": "DeleteRoom",
+    "RelativePath": "api/{HotelId}/rooms/{roomId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "HotelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "PetHotel.API.Controllers.PaymentController",
