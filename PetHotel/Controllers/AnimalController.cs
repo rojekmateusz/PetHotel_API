@@ -6,11 +6,13 @@ using PetHotel.Application.UseCases.Animal.Queries.GetAnimalById;
 using PetHotel.Application.UseCases.Animal.Command.CreateAnimal;
 using PetHotel.Application.UseCases.Animal.Command.UpdateAnimal;
 using PetHotel.Application.UseCases.Animal.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/animals")]
+    [Authorize]
     public class AnimalController(IMediator mediator): ControllerBase
     {
         [HttpPost]

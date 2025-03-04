@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Payment.Command.CreatePayment;
 using PetHotel.Application.UseCases.Payment.Command.DeletePayment;
@@ -11,6 +12,7 @@ namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/{ownerId}/payments")]
+[Authorize]
 public class PaymentController(IMediator mediator) : ControllerBase
 {
     [HttpPost]

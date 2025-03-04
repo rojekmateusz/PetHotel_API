@@ -6,12 +6,13 @@ using PetHotel.Application.UseCases.Review.Dto;
 using PetHotel.Application.UseCases.Review.Queries.GetReviewByIdForHotel;
 using PetHotel.Application.UseCases.Review.Command.DeleteReview;
 using PetHotel.Application.UseCases.Review.Command.UpdateReview;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/hotels/{HotelId}/reviews")]
-
+[Authorize]
 public class ReviewController(IMediator mediator): ControllerBase
 {
     [HttpPost]
@@ -23,6 +24,7 @@ public class ReviewController(IMediator mediator): ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<ReviewDto>>> GetReviewsByHotelId([FromRoute] int HotelId)
     {
         var reviews = await mediator.Send(new GetHotelByIdQuery(HotelId));
@@ -30,6 +32,7 @@ public class ReviewController(IMediator mediator): ControllerBase
     }
 
     [HttpGet("{reviewId}")]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<ReviewDto>>> GetReviewByIdForHotel([FromRoute] int reviewId, [FromRoute] int HotelId)
     {
         var review = await mediator.Send(new GetReviewByIdForHotelQuery(reviewId, HotelId));

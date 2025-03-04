@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Room.Command.CreateRoom;
 using PetHotel.Application.UseCases.Room.Command.DeleteRoom;
@@ -11,6 +12,7 @@ namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/{HotelId}/rooms")]
+[Authorize]
 public class RoomController(IMediator mediator): ControllerBase
 {
     [HttpPost]
@@ -23,6 +25,7 @@ public class RoomController(IMediator mediator): ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<RoomDto>>> GetAllRoomsByHotelId([FromRoute] int HotelId)
     {
         var rooms = await mediator.Send(new GetAllRoomsByHotelIdQuery(HotelId));
@@ -30,6 +33,7 @@ public class RoomController(IMediator mediator): ControllerBase
     }
 
     [HttpGet("{roomId}")]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<RoomDto>>> GetRoomById([FromRoute] int HotelId, [FromRoute] int roomId)
     {
         var room = await mediator.Send(new GetRoomByIdQuery(HotelId, roomId));

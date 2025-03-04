@@ -12,6 +12,7 @@ namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/hotels")]
+    [Authorize]
     public class HotelController(IMediator mediator): ControllerBase
     {
         [HttpPost]
@@ -22,6 +23,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<HotelDto>>> GetAllHotel()
         {
             var hotels = await mediator.Send(new GetAllHotelsQuery());
@@ -29,6 +31,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<HotelDto>>> GetById([FromRoute] int id)
         {
             var hotel = await mediator.Send(new GetHotelByIdQuery(id));

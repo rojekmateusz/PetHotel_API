@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Owner.Command.CreateOwner;
 using PetHotel.Application.UseCases.Owner.Command.DeleteOwner;
@@ -11,7 +12,7 @@ namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/owners")]
-
+[Authorize]
 public class OwnerController(IMediator mediator): ControllerBase
 {
     [HttpPost]
