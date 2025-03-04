@@ -6,6 +6,7 @@ using PetHotel.Application.UseCases.Hotel.Queries.GetHotelById;
 using PetHotel.Application.UseCases.Hotel.Command.CreateHotel;
 using PetHotel.Application.UseCases.Hotel.Command.UpdateHotel;
 using PetHotel.Application.UseCases.Hotel.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetHotel.API.Controllers
 {

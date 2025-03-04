@@ -17,10 +17,9 @@ public class RoomController(IMediator mediator): ControllerBase
     public async Task<ActionResult<IEnumerable<RoomDto>>> CreateRoom([FromRoute] int HotelId, CreateRoomCommand command)
     {
         command.HotelId = HotelId;
-        //int id = 
-        await mediator.Send(command);
-        //return CreatedAtAction(nameof(GetRoomById), new { id }, null ); cos tu jest nie tak z kodem
-        return Created();
+        int roomId = await mediator.Send(command);
+        return CreatedAtAction(nameof(GetRoomById), new { HotelId, roomId }, null );
+      
     }
 
     [HttpGet]
