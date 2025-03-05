@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using PetHotel.API.Middlewares;
 using Serilog;
 
@@ -12,6 +13,9 @@ public static class WebApplicationBuilderExtensions
         builder.Services.AddControllers();
         builder.Services.AddSwaggerGen(c =>
         {
+            c.OperationFilter<SwaggerFileUploadFilter>();
+
+            c.EnableAnnotations();
             c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
             {
                 Type = SecuritySchemeType.Http,
