@@ -11,7 +11,6 @@ namespace PetHotel.Application.UseCases.Animal.Command.CreateAnimal
                 .Length(2, 30)
                 .WithMessage("The Name must contain from 2 to 30 characters"); ;
 
-
             RuleFor(dto => dto.Age)
                 .GreaterThan(0)
                 .WithMessage("Age must by greater than 0");

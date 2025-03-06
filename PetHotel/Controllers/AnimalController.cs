@@ -12,7 +12,7 @@ namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/animals")]
-    //[Authorize]
+    [Authorize]
     public class AnimalController(IMediator mediator): ControllerBase
     {
         [HttpPost]
