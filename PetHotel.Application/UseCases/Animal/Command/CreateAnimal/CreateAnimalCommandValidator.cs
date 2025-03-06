@@ -8,7 +8,8 @@ namespace PetHotel.Application.UseCases.Animal.Command.CreateAnimal
         public CreateAnimalCommandValidator()
         {
             RuleFor(dto => dto.Name)
-                .Length(2, 30);
+                .Length(2, 30)
+                .WithMessage("The Name must contain from 2 to 30 characters"); ;
 
 
             RuleFor(dto => dto.Age)

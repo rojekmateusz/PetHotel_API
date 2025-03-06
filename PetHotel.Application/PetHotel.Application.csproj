@@ -19,8 +19,4 @@
     <ProjectReference Include="..\PetHotel.Domain\PetHotel.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Animal\Validators\" />
-  </ItemGroup>
-
 </Project>
