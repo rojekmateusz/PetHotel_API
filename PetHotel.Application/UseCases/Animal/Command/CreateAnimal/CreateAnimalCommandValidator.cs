@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using PetHotel.Application.UseCases.Animal.Dto;
 
-namespace PetHotel.Application.UseCases.Animal.Validators
+namespace PetHotel.Application.UseCases.Animal.Command.CreateAnimal
 {
-    public class AnimalDtoValidator: AbstractValidator<AnimalDto>
+    public class CreateAnimalCommandValidator : AbstractValidator<CreateAnimalCommand>
     {
-        public AnimalDtoValidator() 
+        public CreateAnimalCommandValidator()
         {
             RuleFor(dto => dto.Name)
                 .Length(2, 30);
