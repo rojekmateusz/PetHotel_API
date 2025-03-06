@@ -1,15 +1,13 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using PetHotel.Application.UseCases.Hotel.Command.DeleteHotel;
 using PetHotel.Domain.Exceptions;
 using PetHotel.Domain.Repositories;
-using System.ComponentModel;
 
 namespace PetHotel.Application.UseCases.Animal.Command.DeleteAnimal;
 
-public class DeleteHotelCommandHandler(ILogger<DeleteHotelCommandHandler> logger, IAnimalRepository animalRepository) : IRequestHandler<DeleteHotelCommand>
+public class DeleteAnimalCommandHandler(ILogger<DeleteAnimalCommandHandler> logger, IAnimalRepository animalRepository) : IRequestHandler<DeleteAnimalCommand>
 {
-    public async Task Handle(DeleteHotelCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteAnimalCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting animal with id {Id}", request.Id);
         var animal = await animalRepository.GetAnimalByIdAsync(request.Id);

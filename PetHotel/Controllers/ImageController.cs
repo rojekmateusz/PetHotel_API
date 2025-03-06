@@ -13,7 +13,7 @@ namespace PetHotel.API.Controllers
         [HttpPost]
         [Route("/hotels/{hotelId}/images")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> UploadImage([FromRoute] int hotelId, [FromForm] IFormFile file, [FromBody] UploadImageCommand command)
+        public async Task<IActionResult> UploadImage([FromRoute] int hotelId, IFormFile file, [FromBody] UploadImageCommand command)
         {
             command.HotelId = hotelId;
             command.File = file;
