@@ -4,6 +4,7 @@ namespace PetHotel.Application.UseCases.Owner.Command.UpdateOwner;
 
 public class UpdateOwnerCommandValidator : AbstractValidator<UpdateOwnerCommand>
 {
+
     public UpdateOwnerCommandValidator()
     {
         RuleFor(dto => dto.FirstName)
