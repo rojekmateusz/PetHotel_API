@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetHotel.Infrastructure.Persistance;
 
@@ -11,9 +12,11 @@ using PetHotel.Infrastructure.Persistance;
 namespace PetHotel.Infrastructure.Migrations
 {
     [DbContext(typeof(PetHotelDbContext))]
-    partial class PetHotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250307160300_addNotesToReservationEntitie")]
+    partial class addNotesToReservationEntitie
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

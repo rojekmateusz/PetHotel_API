@@ -11,6 +11,7 @@ public class ReservationDto
     public string Status { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-
+    public string? Notes { get; set; }
+   
     public List<ServiceDto> Services { get; set; } = [];
 }
