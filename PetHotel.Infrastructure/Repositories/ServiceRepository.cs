@@ -4,11 +4,11 @@ using PetHotel.Infrastructure.Persistance;
 
 namespace PetHotel.Infrastructure.Repositories;
 
-internal class ReservationRepository(PetHotelDbContext dbContext) : IReservationRepository
+internal class ServiceRepository(PetHotelDbContext dbContext) : IServiceRepository
 {
-    public async Task<int> CreateReservation(Reservation entity)
+    public async Task<int> CreateService(Service entity)
     {
-        dbContext.Reservations.Add(entity);
+        dbContext.Services.Add(entity);
         await dbContext.SaveChangesAsync();
         return entity.Id;
     }

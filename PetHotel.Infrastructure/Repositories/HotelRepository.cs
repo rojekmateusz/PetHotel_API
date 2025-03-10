@@ -33,6 +33,7 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
             .Include(re => re.Reservations)
             .Include(rev => rev.Reviews)
             .Include(i => i.Images)
+            .Include(i => i.Services)
             .FirstOrDefaultAsync(r => r.Id == id);
         return hotel;
     }

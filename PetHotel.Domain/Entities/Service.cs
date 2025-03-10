@@ -8,7 +8,8 @@ public class Service
     public decimal Price { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-
+    public int HotelId { get; set; }
+  
     public List<ReservationService> ReservationServices { get; set; } = [];
 
 }

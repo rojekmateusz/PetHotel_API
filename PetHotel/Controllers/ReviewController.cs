@@ -19,7 +19,7 @@ public class ReviewController(IMediator mediator): ControllerBase
     public async Task<ActionResult<IEnumerable<ReviewDto>>> CreateReview([FromRoute] int HotelId, CreateReviewCommand command)
     {
         command.HotelId = HotelId;
-        var reviewId = await mediator.Send(command);
+        int reviewId = await mediator.Send(command);
         return CreatedAtAction(nameof(GetReviewsByHotelId), new { HotelId, reviewId }, null);
     }
 

@@ -11,7 +11,7 @@ namespace PetHotel.Application.UseCases.Service.Dto
         public decimal Price { get; set; } = default!;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
+        
         public List<ReservationDto> Reservations { get; set; } = [];
     }
 }

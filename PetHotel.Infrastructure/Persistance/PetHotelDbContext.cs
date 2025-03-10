@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PetHotel.Domain.Entities;
 
@@ -62,12 +63,19 @@ namespace PetHotel.Infrastructure.Persistance
             modelBuilder.Entity<ReservationService>()
                 .HasOne(rs => rs.Service)
                 .WithMany(s => s.ReservationServices)
-                .HasForeignKey(rs => rs.ServiceId);
+                .HasForeignKey(rs => rs.ServiceId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<ReservationService>()
                 .HasOne(rs => rs.Reservation)
                 .WithMany(s => s.ReservationServices)
-                .HasForeignKey(rs => rs.ServiceId);
+                .HasForeignKey(rs => rs.ServiceId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Hotel>()
+                .HasMany(s => s.Services)
+                .WithOne()
+                .HasForeignKey(s => s.HotelId);
         }
     }
 }

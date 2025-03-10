@@ -17,8 +17,7 @@ public class ReservationController(IMediator mediator) : ControllerBase
     {
         command.HotelId = hotelId;
         int reservationId = await mediator.Send(command);
-        //return CreatedAtAction(nameof(GetReservationById), new { hotelId, reservationId }, null);
-        return Ok();
+        return CreatedAtAction(nameof(GetReservationById), new { hotelId, reservationId }, null);
     }
 
     [HttpGet]

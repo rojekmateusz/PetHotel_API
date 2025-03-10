@@ -12,8 +12,8 @@ using PetHotel.Infrastructure.Persistance;
 namespace PetHotel.Infrastructure.Migrations
 {
     [DbContext(typeof(PetHotelDbContext))]
-    [Migration("20250307160300_addNotesToReservationEntitie")]
-    partial class addNotesToReservationEntitie
+    [Migration("20250310122610_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -511,6 +511,9 @@ namespace PetHotel.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -522,6 +525,8 @@ namespace PetHotel.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
 
                     b.ToTable("Services");
                 });
@@ -695,13 +700,13 @@ namespace PetHotel.Infrastructure.Migrations
                     b.HasOne("PetHotel.Domain.Entities.Reservation", "Reservation")
                         .WithMany("ReservationServices")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("PetHotel.Domain.Entities.Service", "Service")
                         .WithMany("ReservationServices")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Reservation");
@@ -727,6 +732,15 @@ namespace PetHotel.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PetHotel.Domain.Entities.Service", b =>
+                {
+                    b.HasOne("PetHotel.Domain.Entities.Hotel", null)
+                        .WithMany("Services")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PetHotel.Domain.Entities.Animal", b =>
                 {
                     b.Navigation("Reservations");
@@ -741,6 +755,8 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Navigation("Reviews");
 
                     b.Navigation("Rooms");
+
+                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Owner", b =>

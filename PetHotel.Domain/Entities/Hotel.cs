@@ -21,5 +21,6 @@ public class Hotel
     public List<Reservation> Reservations { get; set; } = [];
     public List<Review> Reviews { get; set; } = [];
     public List<Room> Rooms { get; set; } = [];
+    public List<Service> Services { get; set; } = [];
 
 }

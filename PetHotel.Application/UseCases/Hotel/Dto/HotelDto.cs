@@ -2,6 +2,7 @@
 using PetHotel.Application.UseCases.Reservatiion.Dto;
 using PetHotel.Application.UseCases.Review.Dto;
 using PetHotel.Application.UseCases.Room.Dto;
+using PetHotel.Application.UseCases.Service.Dto;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.UseCases.Hotel.Dto;
@@ -26,4 +27,5 @@ public class HotelDto
     public List<ReservationDto> Reservations { get; set; } = [];
     public List<ReviewDto> Reviews { get; set; } = [];
     public List<RoomDto> Rooms { get; set; } = [];
+    public List<ServiceDto> Services { get; set; } = [];
 }

@@ -13,7 +13,7 @@ public class CreateHotelValidator : AbstractValidator<CreateHotelCommand>
 
         RuleFor(dto => dto.HotelsNIP)
             .Length(10)
-            .WithMessage("Hotel NIP must contain 9 numbers");
+            .WithMessage("Hotel NIP must contain 10 numbers");
 
         RuleFor(dto => dto.Email)
             .EmailAddress()
