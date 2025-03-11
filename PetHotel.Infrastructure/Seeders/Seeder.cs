@@ -22,9 +22,18 @@ internal class Seeder(PetHotelDbContext dbContext) : ISeeder
     {
         List<IdentityRole> roles =
             [
-                new(UserRoles.User),
-                new(UserRoles.Owner),
+                new(UserRoles.User)
+                { 
+                    NormalizedName = UserRoles.User.ToUpper()
+                },
+                new(UserRoles.Owner)
+                {
+                    NormalizedName = UserRoles.User.ToUpper()
+                },
                 new(UserRoles.Admin)
+                {
+                    NormalizedName = UserRoles.User.ToUpper()
+                }
             ];
         return roles;
     }
