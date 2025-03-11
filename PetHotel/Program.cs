@@ -4,14 +4,14 @@ using PetHotel.API.Middlewares;
 using PetHotel.Application.Extensions;
 using PetHotel.Domain.Entities;
 using PetHotel.Infrastructure.Extensions;
+using PetHotel.Infrastructure.Seeders;
 using Serilog;
-
 
 namespace PetHotel.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +24,10 @@ namespace PetHotel.API
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            var scope = app.Services.CreateScope();
+            var seeder = scope.ServiceProvider.GetRequiredService<ISeeder>();
+
+            await seeder.Seed();
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
 

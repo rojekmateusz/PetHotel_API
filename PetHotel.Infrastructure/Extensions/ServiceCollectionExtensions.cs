@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PetHotel.Domain.Entities;
 using PetHotel.Domain.Repositories;
 using PetHotel.Infrastructure.Persistance;
 using PetHotel.Infrastructure.Repositories;
+using PetHotel.Infrastructure.Seeders;
 using System.Runtime.CompilerServices;
 
 namespace PetHotel.Infrastructure.Extensions;
@@ -18,7 +20,8 @@ public static class ServiceCollectionExtensions
             .EnableSensitiveDataLogging());
 
         services.AddIdentityApiEndpoints<User>()
-             .AddEntityFrameworkStores<PetHotelDbContext>();
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<PetHotelDbContext>();
 
         services.AddScoped<IAnimalRepository, AnimalRepository>();
         services.AddScoped<IOwnerRepository, OwnerRepository>();
@@ -29,5 +32,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IImageRepository, ImageRepository>();
         services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IServiceRepository, ServiceRepository>();
+        services.AddScoped<ISeeder, Seeder>();
     }
 }
