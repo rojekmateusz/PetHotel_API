@@ -16,6 +16,7 @@ IRequestHandler<GetAllReservationsQuery, List<ReservationDto>>
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
 
+
         var reservations = mapper.Map<List<ReservationDto>>(hotel.Reservations);
         return reservations;
 

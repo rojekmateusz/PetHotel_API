@@ -10,6 +10,6 @@ internal class ServiceRepository(PetHotelDbContext dbContext) : IServiceReposito
     {
         dbContext.Services.Add(entity);
         await dbContext.SaveChangesAsync();
-        return entity.Id;
+        return entity.ServiceId;
     }
 }

@@ -69,7 +69,7 @@ namespace PetHotel.Infrastructure.Persistance
             modelBuilder.Entity<ReservationService>()
                 .HasOne(rs => rs.Reservation)
                 .WithMany(s => s.ReservationServices)
-                .HasForeignKey(rs => rs.ServiceId)
+                .HasForeignKey(rs => rs.ReservationId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Hotel>()

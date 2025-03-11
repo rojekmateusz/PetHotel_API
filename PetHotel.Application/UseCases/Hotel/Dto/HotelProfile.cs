@@ -15,6 +15,7 @@ public class HotelProfile : Profile
             .ForMember(r => r.Reviews, opt => opt.MapFrom(src => src.Reviews))
             .ForMember(s => s.Services, opt => opt.MapFrom(src => src.Services));
 
+
         CreateMap<CreateHotelCommand, Domain.Entities.Hotel>();
         CreateMap<UpdateHotelCommand, Domain.Entities.Hotel>();
     }

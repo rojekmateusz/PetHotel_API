@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Domain.Entities;
 using PetHotel.Domain.Exceptions;
 using PetHotel.Domain.Repositories;
 
@@ -17,8 +19,25 @@ public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHan
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
 
         var reservation = mapper.Map<Domain.Entities.Reservation>(request);
-        int id = await reservationRepository.CreateReservation(reservation);
-        return id;
+
+        int reservationId = await reservationRepository.CreateReservation(reservation);
+       
+        var services = hotel.Services.Where(s => request.servicesIds.Contains(s.ServiceId)).ToList();
+
+        foreach (var service in services)
+        {
+            reservation.ReservationServices.Add(new ReservationService
+            {
+                Service = service,
+                Reservation = reservation
+            });
+        }
+
+        var reservationDto = mapper.Map<Domain.Entities.Reservation>(reservation);
+        
+        await reservationRepository.UpdateReservation(reservationDto);
+            
+        return reservationId;
 
 
     }

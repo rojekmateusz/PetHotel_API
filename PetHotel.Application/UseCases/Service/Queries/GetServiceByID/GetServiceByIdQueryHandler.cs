@@ -14,7 +14,7 @@ public class GetServiceByIdQueryHandler(ILogger<GetServiceByIdQueryHandler> logg
         logger.LogInformation("Getting service by Id: {@ServiceId} in Hotel: {@HotelId}", request.Id, request.HotelId);
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
-        var service = hotel.Services.FirstOrDefault(s => s.Id == request.Id)
+        var service = hotel.Services.FirstOrDefault(s => s.ServiceId == request.Id)
             ?? throw new NotFoundException(nameof(Service), request.Id.ToString());
         var result = mapper.Map<ServiceDto>(service);
         return result;

@@ -2,7 +2,7 @@
 
 public class Reservation
 {
-    public int Id { get; set; }
+    public int ReservationId { get; set; }
     public DateTime StarDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
     public string Status { get; set; } = default!;
