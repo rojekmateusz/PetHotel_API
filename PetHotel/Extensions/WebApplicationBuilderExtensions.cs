@@ -36,7 +36,8 @@ public static class WebApplicationBuilderExtensions
         });
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddScoped<ErrorHandlingMiddleware>();
-     
+        builder.Services.AddScoped<UserCreationMiddleware>();
+
         builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
     }
 }

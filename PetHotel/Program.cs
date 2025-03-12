@@ -23,15 +23,22 @@ namespace PetHotel.API
 
             var app = builder.Build();
 
+            app.Use((context, next) =>
+            {
+                context.Request.EnableBuffering();
+                return next();
+            });
+
             var scope = app.Services.CreateScope();
             var seeder = scope.ServiceProvider.GetRequiredService<ISeeder>();
             await seeder.Seed();
 
 
             // Configure the HTTP request pipeline.
+            app.UseMiddleware<UserCreationMiddleware>();
             
             app.UseMiddleware<ErrorHandlingMiddleware>();
-           
+            
             app.UseSerilogRequestLogging();
 
             if (app.Environment.IsDevelopment())
@@ -43,7 +50,9 @@ namespace PetHotel.API
             app.UseHttpsRedirection();
                         
             app.MapGroup("api/identity").MapIdentityApi<User>();
+
             
+
             app.UseAuthorization();
 
             app.MapControllers();
