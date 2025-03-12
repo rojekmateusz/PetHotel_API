@@ -1,20 +1,27 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using PetHotel.Domain.Constants;
+using PetHotel.Domain.Entities;
 using PetHotel.Infrastructure.Persistance;
 using System.Runtime.CompilerServices;
 
 namespace PetHotel.Infrastructure.Seeders;
 
-internal class Seeder(PetHotelDbContext dbContext) : ISeeder
+internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager) : ISeeder
 {
     public async Task Seed()
     {
-        if(!dbContext.Roles.Any())
+        if (!dbContext.Roles.Any())
         {
             var roles = GetRoles();
             dbContext.Roles.AddRange(roles);
             await dbContext.SaveChangesAsync();
+        }
+
+        if (!dbContext.Users.Any())
+        {
+            await SeedAdminUser();
         }
     }
 
@@ -23,18 +30,33 @@ internal class Seeder(PetHotelDbContext dbContext) : ISeeder
         List<IdentityRole> roles =
             [
                 new(UserRoles.User)
-                { 
+                {
                     NormalizedName = UserRoles.User.ToUpper()
                 },
-                new(UserRoles.Owner)
-                {
-                    NormalizedName = UserRoles.Owner.ToUpper()
-                },
+
                 new(UserRoles.Admin)
                 {
                     NormalizedName = UserRoles.Admin.ToUpper()
                 }
             ];
         return roles;
+    }
+
+    private async Task<IdentityResult> SeedAdminUser()
+    {
+
+        string password = "Admin123!";
+
+        var user = new User
+        {
+            UserName = "Admin",
+            Email = "admin@pethotel.com",
+        };
+        var result = await userManager.CreateAsync(user, password);
+
+        await userManager.AddToRoleAsync(user, UserRoles.Admin);
+
+        return result;
+
     }
 }

@@ -33,5 +33,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<ISeeder, Seeder>();
+        
     }
 }

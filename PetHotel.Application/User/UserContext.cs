@@ -13,7 +13,7 @@ namespace PetHotel.Application.User
         public CurrentUser? GetCurrentUser()
         {
             var user = httpContextAccessor?.HttpContext?.User;
-            if (user != null)
+            if (user == null)
             {
                 throw new InvalidOperationException("User context is not present");
             }
