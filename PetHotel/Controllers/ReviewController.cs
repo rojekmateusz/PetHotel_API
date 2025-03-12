@@ -7,6 +7,7 @@ using PetHotel.Application.UseCases.Review.Queries.GetReviewByIdForHotel;
 using PetHotel.Application.UseCases.Review.Command.DeleteReview;
 using PetHotel.Application.UseCases.Review.Command.UpdateReview;
 using Microsoft.AspNetCore.Authorization;
+using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers;
 
@@ -16,6 +17,7 @@ namespace PetHotel.API.Controllers;
 public class ReviewController(IMediator mediator): ControllerBase
 {
     [HttpPost]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<ReviewDto>>> CreateReview([FromRoute] int HotelId, CreateReviewCommand command)
     {
         command.HotelId = HotelId;
@@ -42,6 +44,7 @@ public class ReviewController(IMediator mediator): ControllerBase
     [HttpDelete("{reviewId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<IActionResult> DeleteReview([FromRoute] int reviewId, [FromRoute] int HotelId)
     {
         await mediator.Send(new DeleteReviewCommand(reviewId, HotelId));
@@ -51,6 +54,7 @@ public class ReviewController(IMediator mediator): ControllerBase
     [HttpPatch("{reviewId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<IActionResult> UpdateReview([FromRoute] int reviewId, [FromRoute] int HotelId, UpdateReviewCommand command)
     {
         command.Id = reviewId;

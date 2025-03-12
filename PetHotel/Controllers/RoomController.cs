@@ -7,15 +7,17 @@ using PetHotel.Application.UseCases.Room.Command.UpdateRoom;
 using PetHotel.Application.UseCases.Room.Dto;
 using PetHotel.Application.UseCases.Room.Queries.GetAllRoomsByHotelId;
 using PetHotel.Application.UseCases.Room.Queries.GetRoomById;
+using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/{HotelId}/rooms")]
-//[Authorize]
+[Authorize]
 public class RoomController(IMediator mediator): ControllerBase
 {
     [HttpPost]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<RoomDto>>> CreateRoom([FromRoute] int HotelId, CreateRoomCommand command)
     {
         command.HotelId = HotelId;
@@ -43,6 +45,7 @@ public class RoomController(IMediator mediator): ControllerBase
     [HttpDelete("{roomId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<IActionResult> DeleteRoom([FromRoute] int roomId, [FromRoute] int HotelId)
     {
         await mediator.Send(new DeleteRoomCommand(roomId, HotelId));
@@ -52,6 +55,7 @@ public class RoomController(IMediator mediator): ControllerBase
     [HttpPatch("{roomId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<IActionResult> UpdateRoom([FromRoute] int HotelId, [FromRoute] int roomId, UpdateRoomCommand command)
     {
         command.Id = roomId;

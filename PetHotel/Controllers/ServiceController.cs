@@ -1,14 +1,17 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Service.Command.CreateService;
 using PetHotel.Application.UseCases.Service.Dto;
 using PetHotel.Application.UseCases.Service.Queries.GetAllServices;
 using PetHotel.Application.UseCases.Service.Queries.GetServiceByID;
+using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("{hotelId}/services")]
+[Authorize(Roles = UserRoles.User)]
 public class ServiceController(IMediator mediator): ControllerBase
 {
     [HttpPost]

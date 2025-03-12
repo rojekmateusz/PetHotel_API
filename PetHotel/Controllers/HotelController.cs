@@ -7,15 +7,17 @@ using PetHotel.Application.UseCases.Hotel.Command.CreateHotel;
 using PetHotel.Application.UseCases.Hotel.Command.UpdateHotel;
 using PetHotel.Application.UseCases.Hotel.Dto;
 using Microsoft.AspNetCore.Authorization;
+using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/hotels")]
-    //[Authorize]
+    [Authorize]
     public class HotelController(IMediator mediator): ControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = UserRoles.User)]
         public async Task<ActionResult<IEnumerable<HotelDto>>> CreateHotel([FromBody] CreateHotelCommand command)
         {
             int id = await mediator.Send(command);
@@ -39,6 +41,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteHotel([FromRoute] int id)
@@ -48,6 +51,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateHotel([FromRoute] int id, [FromBody] UpdateHotelCommand command)

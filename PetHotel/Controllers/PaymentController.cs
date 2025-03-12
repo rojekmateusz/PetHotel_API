@@ -7,6 +7,7 @@ using PetHotel.Application.UseCases.Payment.Command.UpdatePayment;
 using PetHotel.Application.UseCases.Payment.Dto;
 using PetHotel.Application.UseCases.Payment.Queries.GetAllPayments;
 using PetHotel.Application.UseCases.Payment.Queries.GetPayment;
+using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers;
 
@@ -16,6 +17,7 @@ namespace PetHotel.API.Controllers;
 public class PaymentController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<PaymentDto>>> CreatePayment([FromRoute] int ownerId, CreatePaymentCommand command)
     {
         command.OwnerId = ownerId;
@@ -24,6 +26,7 @@ public class PaymentController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<PaymentDto>>> GetAllPayments([FromRoute] int ownerId)
     {
         var payments = await mediator.Send(new GetAllPaymentsByOwnerIdQuery(ownerId));
@@ -31,6 +34,7 @@ public class PaymentController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{paymentId}")]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<PaymentDto>>> GetPayment([FromRoute] int ownerId, [FromRoute] int paymentId)
     {
         var payment = await mediator.Send(new GetPaymentByIdQuery(ownerId, paymentId));
@@ -38,6 +42,7 @@ public class PaymentController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{paymentId}")]
+    [Authorize(Roles = UserRoles.Admin)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeletePayment([FromRoute] int ownerId, [FromRoute] int paymentId)
@@ -47,6 +52,7 @@ public class PaymentController(IMediator mediator) : ControllerBase
     }
 
     [HttpPatch("{paymentId}")]
+    [Authorize(Roles = UserRoles.Admin)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdatePayment([FromRoute] int ownerId, [FromRoute] int paymentId, UpdatePaymentCommand command)

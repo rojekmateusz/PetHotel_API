@@ -7,15 +7,17 @@ using PetHotel.Application.UseCases.Animal.Command.CreateAnimal;
 using PetHotel.Application.UseCases.Animal.Command.UpdateAnimal;
 using PetHotel.Application.UseCases.Animal.Dto;
 using Microsoft.AspNetCore.Authorization;
+using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/animals")]
- //   [Authorize]
+    [Authorize]
     public class AnimalController(IMediator mediator): ControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = UserRoles.User)]
         public async Task<ActionResult<IEnumerable<AnimalDto>>> CreateAnimal([FromBody] CreateAnimalCommand command)
         {
             int id = await mediator.Send(command);
@@ -23,6 +25,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = UserRoles.Admin)]
         public async Task<ActionResult<IEnumerable<AnimalDto>>> GetAllAnimal()
         {
             var animals = await mediator.Send(new GetAllAnimalsQuery());
@@ -30,6 +33,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         public async Task<ActionResult<IEnumerable<AnimalDto>>> GetById([FromRoute] int id)
         {
             var animal = await mediator.Send(new GetAnimalByIdQuery(id));
@@ -37,6 +41,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete([FromRoute] int id)
@@ -46,6 +51,7 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateAnimalCommand command)
