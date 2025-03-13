@@ -22,6 +22,7 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
         if (!dbContext.Users.Any())
         {
             await SeedAdminUser();
+            await SeedUser();
         }
     }
 
@@ -55,6 +56,24 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
         var result = await userManager.CreateAsync(user, password);
 
         await userManager.AddToRoleAsync(user, UserRoles.Admin);
+
+        return result;
+
+    }
+
+    private async Task<IdentityResult> SeedUser()
+    {
+
+        string password = "Password1!";
+
+        var user = new User
+        {
+            UserName = "User",
+            Email = "user@pethotel.com",
+        };
+        var result = await userManager.CreateAsync(user, password);
+
+        await userManager.AddToRoleAsync(user, UserRoles.User);
 
         return result;
 
