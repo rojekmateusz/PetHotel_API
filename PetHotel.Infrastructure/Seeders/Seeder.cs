@@ -50,7 +50,7 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
 
         var user = new User
         {
-            UserName = "Admin",
+            UserName = "admin@pethotel.com",
             Email = "admin@pethotel.com",
         };
         var result = await userManager.CreateAsync(user, password);
@@ -68,7 +68,7 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
 
         var user = new User
         {
-            UserName = "User",
+            UserName = "user@pethotel.com",
             Email = "user@pethotel.com",
         };
         var result = await userManager.CreateAsync(user, password);
