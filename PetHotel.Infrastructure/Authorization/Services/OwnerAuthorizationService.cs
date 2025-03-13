@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using PetHotel.Application.User;
 using PetHotel.Domain.Constants;
 using PetHotel.Domain.Entities;
-using PetHotel.Domain.Interfaces;
+using PetHotel.Domain.Interfaces.AuthorizationServices;
 using System.Security.Claims;
 
 namespace PetHotel.Infrastructure.Authorization.Services;

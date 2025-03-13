@@ -1,7 +1,7 @@
 ﻿using PetHotel.Domain.Constants;
 using PetHotel.Domain.Entities;
 
-namespace PetHotel.Domain.Interfaces;
+namespace PetHotel.Domain.Interfaces.AuthorizationServices;
 
 public interface IOwnerAuthorizationService
 {

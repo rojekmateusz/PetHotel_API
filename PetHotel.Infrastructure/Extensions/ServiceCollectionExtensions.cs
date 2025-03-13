@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PetHotel.Domain.Entities;
-using PetHotel.Domain.Interfaces;
+using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 using PetHotel.Infrastructure.Authorization.Services;
 using PetHotel.Infrastructure.Persistance;
