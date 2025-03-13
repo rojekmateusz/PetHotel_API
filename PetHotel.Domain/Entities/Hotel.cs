@@ -23,4 +23,6 @@ public class Hotel
     public List<Room> Rooms { get; set; } = [];
     public List<Service> Services { get; set; } = [];
 
+    public User user { get; set; } = default!;
+    public string UserId { get; set; } = default!;
 }

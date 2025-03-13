@@ -15,4 +15,7 @@ public class Reservation
     public Animal? Animal { get; set; }
 
     public List<ReservationService> ReservationServices { get; set; } = [];
+
+    public User user { get; set; } = default!;
+    public string UserId { get; set; } = default!;
 }

@@ -190,12 +190,18 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<decimal?>("Weight")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Animals");
                 });
@@ -256,7 +262,13 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Hotels");
                 });
@@ -285,9 +297,15 @@ namespace PetHotel.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Images");
                 });
@@ -334,7 +352,14 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Owners");
                 });
@@ -366,9 +391,15 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Payments");
                 });
@@ -406,11 +437,17 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("AnimalId");
 
                     b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -454,9 +491,15 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -488,9 +531,15 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Rooms");
                 });
@@ -523,9 +572,15 @@ namespace PetHotel.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ServiceId");
 
                     b.HasIndex("HotelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Services");
                 });
@@ -654,7 +709,26 @@ namespace PetHotel.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedAnimals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Owner");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("PetHotel.Domain.Entities.Hotel", b =>
+                {
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedHotels")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Image", b =>
@@ -664,6 +738,25 @@ namespace PetHotel.Infrastructure.Migrations
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedImages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("PetHotel.Domain.Entities.Owner", b =>
+                {
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithOne("OwnedOwner")
+                        .HasForeignKey("PetHotel.Domain.Entities.Owner", "UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Payment", b =>
@@ -672,7 +765,15 @@ namespace PetHotel.Infrastructure.Migrations
                         .WithMany("Payments")
                         .HasForeignKey("OwnerId");
 
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedPayments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Owner");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Reservation", b =>
@@ -689,9 +790,17 @@ namespace PetHotel.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedReservations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Animal");
 
                     b.Navigation("Hotel");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.ReservationService", b =>
@@ -720,6 +829,14 @@ namespace PetHotel.Infrastructure.Migrations
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedReviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Room", b =>
@@ -729,6 +846,14 @@ namespace PetHotel.Infrastructure.Migrations
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedRooms")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Service", b =>
@@ -738,6 +863,14 @@ namespace PetHotel.Infrastructure.Migrations
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PetHotel.Domain.Entities.User", "user")
+                        .WithMany("OwnedServices")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("PetHotel.Domain.Entities.Animal", b =>
@@ -773,6 +906,27 @@ namespace PetHotel.Infrastructure.Migrations
             modelBuilder.Entity("PetHotel.Domain.Entities.Service", b =>
                 {
                     b.Navigation("ReservationServices");
+                });
+
+            modelBuilder.Entity("PetHotel.Domain.Entities.User", b =>
+                {
+                    b.Navigation("OwnedAnimals");
+
+                    b.Navigation("OwnedHotels");
+
+                    b.Navigation("OwnedImages");
+
+                    b.Navigation("OwnedOwner");
+
+                    b.Navigation("OwnedPayments");
+
+                    b.Navigation("OwnedReservations");
+
+                    b.Navigation("OwnedReviews");
+
+                    b.Navigation("OwnedRooms");
+
+                    b.Navigation("OwnedServices");
                 });
 #pragma warning restore 612, 618
         }

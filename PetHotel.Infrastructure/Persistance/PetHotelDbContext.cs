@@ -22,6 +22,8 @@ namespace PetHotel.Infrastructure.Persistance
         {
             base.OnModelCreating(modelBuilder);
 
+            // Entities
+
             modelBuilder.Entity<Animal>()
                .HasMany(a => a.Reservations)
                .WithOne(r => r.Animal)
@@ -76,6 +78,62 @@ namespace PetHotel.Infrastructure.Persistance
                 .HasMany(s => s.Services)
                 .WithOne()
                 .HasForeignKey(s => s.HotelId);
+
+            // User resource authorization
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedAnimals)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedHotels)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedImages)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasOne(o => o.OwnedOwner)
+             .WithOne(r => r.user)
+             .HasForeignKey<Owner>(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedPayments)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedReservations)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedReviews)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedRooms)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<User>()
+             .HasMany(o => o.OwnedServices)
+             .WithOne(r => r.user)
+             .HasForeignKey(r => r.UserId)
+             .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

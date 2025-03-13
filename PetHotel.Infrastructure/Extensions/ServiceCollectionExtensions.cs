@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PetHotel.Domain.Entities;
+using PetHotel.Domain.Interfaces;
 using PetHotel.Domain.Repositories;
+using PetHotel.Infrastructure.Authorization.Services;
 using PetHotel.Infrastructure.Persistance;
 using PetHotel.Infrastructure.Repositories;
 using PetHotel.Infrastructure.Seeders;
@@ -33,6 +35,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<ISeeder, Seeder>();
-        
+        services.AddScoped<IOwnerAuthorizationService, OwnerAuthorizationService>();
     }
 }
