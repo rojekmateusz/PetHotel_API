@@ -13,7 +13,6 @@ namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/owners")]
-[Authorize]
 public class OwnerController(IMediator mediator): ControllerBase
 {
     [HttpPost]
@@ -32,29 +31,29 @@ public class OwnerController(IMediator mediator): ControllerBase
         return Ok(owners);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{ownerId}")]
     [Authorize(Roles = UserRoles.User)]
-    public async Task<ActionResult<IEnumerable<OwnerDto>>> GetById([FromRoute] int id)
+    public async Task<ActionResult<IEnumerable<OwnerDto>>> GetById([FromRoute] int ownerId)
     {
-        var owner = await mediator.Send(new GetOwnerByIDQuery(id));
+        var owner = await mediator.Send(new GetOwnerByIDQuery(ownerId));
         return Ok(owner);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{ownerId}")]
     [Authorize(Roles = UserRoles.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteOwner([FromRoute] int id)
+    public async Task<IActionResult> DeleteOwner([FromRoute] int ownerId)
     {
-        await mediator.Send(new DeleteOwnerCommand(id));
+        await mediator.Send(new DeleteOwnerCommand(ownerId));
         return NoContent();
     }
 
-    [HttpPatch("{id}")]
+    [HttpPatch("{ownerId}")]
     [Authorize(Roles = UserRoles.User)]
-    public async Task<IActionResult> UpdateOwner([FromRoute] int id, [FromBody] UpdateOwnerCommand command)
+    public async Task<IActionResult> UpdateOwner([FromRoute] int ownerId, [FromBody] UpdateOwnerCommand command)
     {
-        command.Id = id;
+        command.Id = ownerId;
         await mediator.Send(command);
         return Ok();
     }

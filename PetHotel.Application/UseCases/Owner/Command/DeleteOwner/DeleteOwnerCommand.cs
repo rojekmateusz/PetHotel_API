@@ -2,7 +2,7 @@
 
 namespace PetHotel.Application.UseCases.Owner.Command.DeleteOwner;
 
-public class DeleteOwnerCommand(int id) : IRequest
+public class DeleteOwnerCommand(int ownerId) : IRequest
 {
-    public int Id { get; set; } = id;
+    public int Id { get; set; } = ownerId;
 }
