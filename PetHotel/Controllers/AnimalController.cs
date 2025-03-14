@@ -13,7 +13,6 @@ namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/{ownerId}/animals")]
-    [Authorize]
     public class AnimalController(IMediator mediator): ControllerBase
     {
         [HttpPost]
@@ -33,32 +32,32 @@ namespace PetHotel.API.Controllers
             return Ok(animals); 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{animalId}")]
         [Authorize(Roles = UserRoles.User)]
-        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetById([FromRoute] int ownerId, [FromRoute] int id)
+        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetById([FromRoute] int ownerId, [FromRoute] int animalId)
         {
-            var animal = await mediator.Send(new GetAnimalByIdQuery(ownerId, id));
+            var animal = await mediator.Send(new GetAnimalByIdQuery(ownerId, animalId));
             return Ok(animal);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{animalId}")]
         [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete([FromRoute] int ownerId, [FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int ownerId, [FromRoute] int animalId)
         {
-            await mediator.Send(new DeleteAnimalCommand(ownerId, id));
+            await mediator.Send(new DeleteAnimalCommand(ownerId, animalId));
             return NoContent();
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch("{animalId}")]
         [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Update([FromRoute] int ownerId, [FromRoute] int id, [FromBody] UpdateAnimalCommand command)
+        public async Task<IActionResult> Update([FromRoute] int ownerId, [FromRoute] int animalId, [FromBody] UpdateAnimalCommand command)
         {
             command.OwnerID = ownerId;
-            command.Id = id;
+            command.Id = animalId;
             await mediator.Send(command);
             return Ok();
         }
