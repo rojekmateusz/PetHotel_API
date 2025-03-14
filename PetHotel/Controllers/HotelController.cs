@@ -13,7 +13,7 @@ namespace PetHotel.API.Controllers
 {
     [ApiController]
     [Route("api/hotels")]
-    [Authorize]
+    
     public class HotelController(IMediator mediator): ControllerBase
     {
         [HttpPost]
@@ -25,38 +25,36 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<HotelDto>>> GetAllHotel()
         {
             var hotels = await mediator.Send(new GetAllHotelsQuery());
             return Ok(hotels);
         }
 
-        [HttpGet("{id}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<HotelDto>>> GetById([FromRoute] int id)
+        [HttpGet("{hotelId}")]
+        public async Task<ActionResult<IEnumerable<HotelDto>>> GetById([FromRoute] int hotelId)
         {
-            var hotel = await mediator.Send(new GetHotelByIdQuery(id));
+            var hotel = await mediator.Send(new GetHotelByIdQuery(hotelId));
             return Ok(hotel);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{hotelId}")]
         [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteHotel([FromRoute] int id)
+        public async Task<IActionResult> DeleteHotel([FromRoute] int hotelId)
         { 
-            await mediator.Send(new DeleteAnimalCommand(id));
+            await mediator.Send(new DeleteAnimalCommand(hotelId));
             return NoContent();
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch("{hotelId}")]
         [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateHotel([FromRoute] int id, [FromBody] UpdateHotelCommand command)
+        public async Task<IActionResult> UpdateHotel([FromRoute] int hotelId, [FromBody] UpdateHotelCommand command)
         {
-            command.Id = id;
+            command.Id = hotelId;
             await mediator.Send(command);
             return Ok();
         }
