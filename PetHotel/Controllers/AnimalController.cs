@@ -8,6 +8,7 @@ using PetHotel.Application.UseCases.Animal.Command.UpdateAnimal;
 using PetHotel.Application.UseCases.Animal.Dto;
 using Microsoft.AspNetCore.Authorization;
 using PetHotel.Domain.Constants;
+using PetHotel.Domain.Entities;
 
 namespace PetHotel.API.Controllers
 {
@@ -20,8 +21,8 @@ namespace PetHotel.API.Controllers
         public async Task<ActionResult<IEnumerable<AnimalDto>>> CreateAnimal([FromRoute] int ownerId, [FromBody] CreateAnimalCommand command)
         {
             command.OwnerID = ownerId;
-            int id = await mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new {id}, null);
+            int animalId = await mediator.Send(command);
+            return CreatedAtAction(nameof(GetById), new { ownerId, animalId }, null);
         }
 
         [HttpGet]

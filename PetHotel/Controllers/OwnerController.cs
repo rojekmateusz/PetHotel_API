@@ -19,8 +19,8 @@ public class OwnerController(IMediator mediator): ControllerBase
     [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<OwnerDto>>> CreateOwner([FromBody] CreateOwnerCommand command)
     {
-        int id = await mediator.Send(command);
-        return CreatedAtAction(nameof(GetById), new {id}, null);
+        int ownerId = await mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new {ownerId}, null);
     }
 
     [HttpGet]
