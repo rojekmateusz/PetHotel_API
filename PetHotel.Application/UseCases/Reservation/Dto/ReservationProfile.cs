@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PetHotel.Application.UseCases.Reservatiion.CreateReservation;
+using PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
 using PetHotel.Application.UseCases.Service.Dto;
 
 namespace PetHotel.Application.UseCases.Reservatiion.Dto;

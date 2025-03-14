@@ -2,7 +2,7 @@
 using PetHotel.Application.UseCases.Reservatiion.Dto;
 using PetHotel.Application.UseCases.Service.Dto;
 
-namespace PetHotel.Application.UseCases.Reservatiion.CreateReservation;
+namespace PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
 
 public class CreateReservationCommand : IRequest<int>
 {

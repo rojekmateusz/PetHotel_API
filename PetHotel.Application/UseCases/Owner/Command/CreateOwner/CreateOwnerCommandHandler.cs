@@ -19,9 +19,9 @@ public class CreateOwnerCommandHandler(ILogger<CreateOwnerCommandHandler> logger
         var currentUser = userContext.GetCurrentUser();
         logger.LogInformation("{UserEmail} [{UserId}] is creating a new owner {@Owner}", currentUser.Email, currentUser.Id, request);
                
-        var ownerDto = mapper.Map<Domain.Entities.Owner>(request);
-        ownerDto.UserId = currentUser.Id;  
-        int id = await ownerRepository.CreateOwner(ownerDto);
+        var owner = mapper.Map<Domain.Entities.Owner>(request);
+        owner.UserId = currentUser.Id;  
+        int id = await ownerRepository.CreateOwner(owner);
         return id;
     }
 }

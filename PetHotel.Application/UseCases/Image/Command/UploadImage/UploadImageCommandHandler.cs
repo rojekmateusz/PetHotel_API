@@ -5,13 +5,15 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PetHotel.Domain.Constants;
 using PetHotel.Domain.Exceptions;
+using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 
 namespace PetHotel.Application.UseCases.Image.Command.UploadImage;
 
 public class UploadImageCommandHandler(ILogger<UploadImageCommandHandler> logger,IMapper mapper, IConfiguration configuration, IHotelRepository hotelRepository,
-    IImageRepository imageRepository) : IRequestHandler<UploadImageCommand, int>
+    IImageRepository imageRepository, IHotelAuthorizationService hotelAuthorizationService) : IRequestHandler<UploadImageCommand, int>
 {
     public async Task<int> Handle(UploadImageCommand request, CancellationToken cancellationToken)
     {
@@ -22,6 +24,9 @@ public class UploadImageCommandHandler(ILogger<UploadImageCommandHandler> logger
 
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
+
+        if (!hotelAuthorizationService.Authorize(hotel, ResourceOperation.Create))
+            throw new ForbidException();
 
         request.Url = await UploadToAzureBlobStorage(request.File);
 
