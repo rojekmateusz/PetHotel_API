@@ -14,25 +14,18 @@ public class OwnerAuthorizationService(ILogger<OwnerAuthorizationService> logger
     {
         var user = userContext.GetCurrentUser();
         logger.LogInformation("Authorize user {UserId} with roles {Roles} to {ResourceOperation} for {Owner}",
-            user?.Id,
-            user?.Roles,
+            user!.Id,
+            user!.Roles,
             resourceOperation,
             owner);
 
-        if (resourceOperation == ResourceOperation.Read || resourceOperation == ResourceOperation.Create)
+        if ((resourceOperation == ResourceOperation.Read || resourceOperation == ResourceOperation.Create) && user!.Id == owner.UserId)
         {
             logger.LogInformation("Create/read operation - successful authorization");
             return true;
         }
-
-        if (resourceOperation == ResourceOperation.Delete && user.IsInRole(UserRoles.Admin))
-        {
-            logger.LogInformation("Admin user, delete operation - successful authorization");
-            return true;
-        }
-
-        if ((resourceOperation == ResourceOperation.Delete || resourceOperation == ResourceOperation.Update)
-            && user.Id == owner.UserId)
+                
+        if ((resourceOperation == ResourceOperation.Delete || resourceOperation == ResourceOperation.Update) && user!.Id == owner.UserId)
         {
             logger.LogInformation("Restaurant owner - successful authorization");
             return true;
