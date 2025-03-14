@@ -12,31 +12,32 @@ using PetHotel.Domain.Constants;
 namespace PetHotel.API.Controllers
 {
     [ApiController]
-    [Route("api/animals")]
+    [Route("api/{ownerId}/animals")]
     [Authorize]
     public class AnimalController(IMediator mediator): ControllerBase
     {
         [HttpPost]
         [Authorize(Roles = UserRoles.User)]
-        public async Task<ActionResult<IEnumerable<AnimalDto>>> CreateAnimal([FromBody] CreateAnimalCommand command)
+        public async Task<ActionResult<IEnumerable<AnimalDto>>> CreateAnimal([FromRoute] int ownerId, [FromBody] CreateAnimalCommand command)
         {
+            command.OwnerID = ownerId;
             int id = await mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new {id}, null);
         }
 
         [HttpGet]
-        [Authorize(Roles = UserRoles.Admin)]
-        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetAllAnimal()
+        [Authorize(Roles = UserRoles.User)]
+        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetAllAnimal([FromRoute] int ownerId)
         {
-            var animals = await mediator.Send(new GetAllAnimalsQuery());
+            var animals = await mediator.Send(new GetAllAnimalsQuery(ownerId));
             return Ok(animals); 
         }
 
         [HttpGet("{id}")]
         [Authorize(Roles = UserRoles.User)]
-        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetById([FromRoute] int id)
+        public async Task<ActionResult<IEnumerable<AnimalDto>>> GetById([FromRoute] int ownerId, [FromRoute] int id)
         {
-            var animal = await mediator.Send(new GetAnimalByIdQuery(id));
+            var animal = await mediator.Send(new GetAnimalByIdQuery(ownerId, id));
             return Ok(animal);
         }
 
@@ -44,9 +45,9 @@ namespace PetHotel.API.Controllers
         [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int ownerId, [FromRoute] int id)
         {
-            await mediator.Send(new DeleteAnimalCommand(id));
+            await mediator.Send(new DeleteAnimalCommand(ownerId, id));
             return NoContent();
         }
 
@@ -54,8 +55,9 @@ namespace PetHotel.API.Controllers
         [Authorize(Roles = UserRoles.User)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateAnimalCommand command)
+        public async Task<IActionResult> Update([FromRoute] int ownerId, [FromRoute] int id, [FromBody] UpdateAnimalCommand command)
         {
+            command.OwnerID = ownerId;
             command.Id = id;
             await mediator.Send(command);
             return Ok();
