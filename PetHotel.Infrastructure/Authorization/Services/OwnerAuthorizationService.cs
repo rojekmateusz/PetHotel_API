@@ -19,15 +19,27 @@ public class OwnerAuthorizationService(ILogger<OwnerAuthorizationService> logger
             resourceOperation,
             owner);
 
-        if ((resourceOperation == ResourceOperation.Read || resourceOperation == ResourceOperation.Create) && user!.Id == owner.UserId)
+        if ((resourceOperation == ResourceOperation.Create) && user!.Id == owner.UserId)
         {
-            logger.LogInformation("Create/read operation - successful authorization");
+            logger.LogInformation("Create operation - successful authorization");
             return true;
         }
-                
-        if ((resourceOperation == ResourceOperation.Delete || resourceOperation == ResourceOperation.Update) && user!.Id == owner.UserId)
+
+        if ((resourceOperation == ResourceOperation.Delete ) && user!.Id == owner.UserId)
         {
-            logger.LogInformation("Restaurant owner - successful authorization");
+            logger.LogInformation("Delete operation - successful authorization");
+            return true;
+        }
+
+        if ((resourceOperation == ResourceOperation.Read) && user!.Id == owner.UserId)
+        {
+            logger.LogInformation("Read operation - successful authorization");
+            return true;
+        }
+
+        if ((resourceOperation == ResourceOperation.Update) && user!.Id == owner.UserId)
+        {
+            logger.LogInformation("Update operation - successful authorization");
             return true;
         }
 
