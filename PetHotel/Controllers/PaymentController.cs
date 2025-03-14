@@ -13,7 +13,6 @@ namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/{ownerId}/payments")]
-[Authorize]
 public class PaymentController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
@@ -59,7 +58,6 @@ public class PaymentController(IMediator mediator) : ControllerBase
     {
         command.OwnerId = ownerId;
         command.Id = paymentId;
-        
         await mediator.Send(command);
         return Ok();
     }
