@@ -17,7 +17,4 @@ public class Animal
     public Owner? Owner { get; set; }
     public List<Reservation> Reservations { get; set; } = [];
 
-    public User user { get; set; } = default!;
-    public string UserId { get; set; } = default!;
-
-}
+ }

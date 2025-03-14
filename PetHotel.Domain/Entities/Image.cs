@@ -9,7 +9,4 @@ public class Image
     public DateTime UpdatedAt { get; set; }
 
     public int HotelId { get; set; }
-
-    public User user { get; set; } = default!;
-    public string UserId { get; set; } = default!;
 }

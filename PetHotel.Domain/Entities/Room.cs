@@ -13,6 +13,4 @@ public class Room
 
     public int HotelId { get; set; }
 
-    public User user { get; set; } = default!;
-    public string UserId { get; set; } = default!;
 }

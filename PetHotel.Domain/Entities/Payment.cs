@@ -10,7 +10,4 @@ public class Payment
     public DateTime UpdatedAt { get; set; }
     public int? OwnerId { get; set; }
     public Owner? Owner { get; set; }
-
-    public User user { get; set; } = default!;
-    public string UserId { get; set; } = default!;
 }
