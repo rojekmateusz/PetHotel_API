@@ -36,5 +36,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<ISeeder, Seeder>();
         services.AddScoped<IOwnerAuthorizationService, OwnerAuthorizationService>();
+        services.AddScoped<IHotelAuthorizationService, HotelAuthorizationService>();
     }
 }
