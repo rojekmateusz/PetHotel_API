@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using PetHotel.Domain.Constants;
 using PetHotel.Domain.Entities;
 using PetHotel.Infrastructure.Persistance;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace PetHotel.Infrastructure.Seeders;
@@ -14,24 +15,24 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
     {
         if (!dbContext.Roles.Any())
         {
-            var roles = GetRoles();
+            var roles = Roles;
             dbContext.Roles.AddRange(roles);
             await dbContext.SaveChangesAsync();
         }
 
         if (!dbContext.Users.Any())
         {
-            await SeedAdminUser();
-            await SeedUser();
-            await SeedUser2();
+            await SeedUsers();
         }
     }
 
-    private IEnumerable<IdentityRole> GetRoles()
+    private static IEnumerable<IdentityRole> Roles
     {
-        List<IdentityRole> roles =
-            [
-                new(UserRoles.User)
+        get
+        {
+            List<IdentityRole> roles =
+                [
+                    new(UserRoles.User)
                 {
                     NormalizedName = UserRoles.User.ToUpper()
                 },
@@ -40,63 +41,50 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
                 {
                     NormalizedName = UserRoles.Admin.ToUpper()
                 }
-            ];
-        return roles;
+                ];
+            return roles;
+        }
     }
 
-    private async Task<IdentityResult> SeedAdminUser()
+    private async Task<IEnumerable<IdentityResult>> SeedUsers()
     {
+        var users = new List<IdentityResult>();
 
-        string password = "Admin123!";
+        string adminpswd = "Admin123!";
 
-        var user = new User
+        var admin = new User
         {
             UserName = "admin@pethotel.com",
             Email = "admin@pethotel.com",
         };
-        var result = await userManager.CreateAsync(user, password);
+        var resultAdmin = await userManager.CreateAsync(admin, adminpswd);
+        await userManager.AddToRoleAsync(admin, UserRoles.Admin);
+        users.Add(resultAdmin);
 
-        await userManager.AddToRoleAsync(user, UserRoles.Admin);
 
-        return result;
+        string user1pswd = "Password1!";
 
-    }
-
-    private async Task<IdentityResult> SeedUser()
-    {
-
-        string password = "Password1!";
-
-        var user = new User
+        var user1 = new User
         {
             UserName = "user@pethotel.com",
             Email = "user@pethotel.com",
         };
-        var result = await userManager.CreateAsync(user, password);
+        var resultUser1 = await userManager.CreateAsync(user1, user1pswd);
+        await userManager.AddToRoleAsync(user1, UserRoles.User);
+        users.Add(resultUser1);
 
-        await userManager.AddToRoleAsync(user, UserRoles.User);
+        string user2pswd = "Password2!";
 
-        return result;
-
-    }
-
-    private async Task<IdentityResult> SeedUser2()
-    {
-
-        string password = "Password2!";
-
-        var user = new User
+        var user2 = new User
         {
             UserName = "user2@pethotel.com",
             Email = "user2@pethotel.com",
         };
-        var result = await userManager.CreateAsync(user, password);
+        var resultUser2 = await userManager.CreateAsync(user2, user2pswd);
+        await userManager.AddToRoleAsync(user2, UserRoles.User);
+        users.Add(resultUser2);
 
-        await userManager.AddToRoleAsync(user, UserRoles.User);
-
-        return result;
+        return users;
 
     }
-
-
 }
