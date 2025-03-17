@@ -22,7 +22,7 @@ internal class ReservationRepository(PetHotelDbContext dbContext) : IReservation
        return reservations;
     }
 
-    public async Task<Reservation> GetReservationByIdAsync(int id)
+    public async Task<Reservation?> GetReservationByIdAsync(int id)
     {
         var reservation = await dbContext.Reservations
             .Include(r => r.ReservationServices)

@@ -84,7 +84,7 @@ namespace PetHotel.Infrastructure.Persistance
 
             modelBuilder.Entity<User>()
              .HasMany(o => o.OwnedHotels)
-             .WithOne(r => r.user)
+             .WithOne(r => r.User)
              .HasForeignKey(r => r.UserId);
              
 

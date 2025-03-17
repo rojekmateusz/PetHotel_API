@@ -9,12 +9,12 @@ using PetHotel.Domain.Repositories;
 namespace PetHotel.Application.UseCases.Hotel.Command.CreateHotel;
 
 public class CreateHotelCommandHandler(ILogger<CreateHotelCommandHandler> logger, IMapper mapper, IHotelRepository hotelRepository,
-    IHotelAuthorizationService hotelAuthorizationService, IUserContext userContext) : IRequestHandler<CreateHotelCommand, int>
+    IUserContext userContext) : IRequestHandler<CreateHotelCommand, int>
 {
     public async Task<int> Handle(CreateHotelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Create Hotel {@Hotel}", request);
-        var currentUser = userContext.GetCurrentUser();
+        var currentUser = userContext.GetCurrentUser()!;
         logger.LogInformation("{UserEmail} [{UserId}] is creating a new owner {@Hotel}", currentUser.Email, currentUser.Id, request);
 
         var hotel = mapper.Map<Domain.Entities.Hotel>(request);

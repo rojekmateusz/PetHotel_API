@@ -16,7 +16,7 @@ public class CreateOwnerCommandHandler(ILogger<CreateOwnerCommandHandler> logger
     public async Task<int> Handle(CreateOwnerCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Create new Owner {@Owner}", request);
-        var currentUser = userContext.GetCurrentUser();
+        var currentUser = userContext.GetCurrentUser()!;
         logger.LogInformation("{UserEmail} [{UserId}] is creating a new owner {@Owner}", currentUser.Email, currentUser.Id, request);
                
         var owner = mapper.Map<Domain.Entities.Owner>(request);

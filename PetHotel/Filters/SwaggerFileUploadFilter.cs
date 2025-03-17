@@ -2,37 +2,40 @@
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
 
-public class SwaggerFileUploadFilter : IOperationFilter
+namespace PetHotel.API.Filters
 {
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public class SwaggerFileUploadFilter : IOperationFilter
     {
-        var fileParams = context.MethodInfo.GetParameters()
-            .Where(p => p.ParameterType == typeof(IFormFile))
-            .ToList();
-
-        if (!fileParams.Any()) return;
-
-        operation.RequestBody = new OpenApiRequestBody
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            Content = new Dictionary<string, OpenApiMediaType>
+            var fileParams = context.MethodInfo.GetParameters()
+                .Where(p => p.ParameterType == typeof(IFormFile))
+                .ToList();
+
+            if (fileParams.Count == 0) return;
+
+            operation.RequestBody = new OpenApiRequestBody
             {
-                ["multipart/form-data"] = new OpenApiMediaType
+                Content = new Dictionary<string, OpenApiMediaType>
                 {
-                    Schema = new OpenApiSchema
+                    ["multipart/form-data"] = new OpenApiMediaType
                     {
-                        Type = "object",
-                        Properties = fileParams.ToDictionary(
-                            param => param.Name,
-                            param => new OpenApiSchema
-                            {
-                                Type = "string",
-                                Format = "binary"
-                            }
-                        ),
-                        Required = fileParams.Select(p => p.Name).ToHashSet()
+                        Schema = new OpenApiSchema
+                        {
+                            Type = "object",
+                            Properties = fileParams.ToDictionary(
+                                param => param.Name ?? string.Empty,
+                                param => new OpenApiSchema
+                                {
+                                    Type = "string",
+                                    Format = "binary"
+                                }
+                            ),
+                            Required = fileParams.Select(p => p.Name).ToHashSet()
+                        }
                     }
                 }
-            }
-        };
+            };
+        }
     }
 }

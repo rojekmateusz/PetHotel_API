@@ -11,7 +11,7 @@ public class Hotel
     public string City { get; set; } = default!;
     public string PostalCode { get; set; } = default!;
     public string Email { get; set; } = default!;
-    public  string? Description { get; set; }
+    public  string Description { get; set; } = default!;
     public int? Rating { get; set; } 
     public string IsActive { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
@@ -23,6 +23,6 @@ public class Hotel
     public List<Room> Rooms { get; set; } = [];
     public List<Service> Services { get; set; } = [];
 
-    public User user { get; set; } = default!;
+    public User User { get; set; } = default!;
     public string UserId { get; set; } = default!;
 }

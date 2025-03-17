@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using PetHotel.API.Filters;
 using PetHotel.API.Middlewares;
 using Serilog;
 

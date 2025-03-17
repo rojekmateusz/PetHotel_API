@@ -34,8 +34,8 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
 
         var baseQuery = dbContext.Hotels
             .Where(h => serachPhraseLower == null
-            || h.HotelName.ToLower().Contains(serachPhraseLower)
-            || h.City.ToLower().Contains(serachPhraseLower));
+            || h.HotelName.Contains(serachPhraseLower, StringComparison.CurrentCultureIgnoreCase)
+            || h.City.Contains(serachPhraseLower, StringComparison.CurrentCultureIgnoreCase));
 
         var totalCount = await baseQuery.CountAsync();
 
