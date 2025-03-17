@@ -9,5 +9,5 @@ public interface IHotelRepository
     Task<Hotel> GetHotelByIdAsync(int id);
     Task DeleteHotel(Hotel entity);
     Task SaveChanges();
-    Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase);
+    Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber);
 }

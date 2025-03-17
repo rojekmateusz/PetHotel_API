@@ -26,16 +26,23 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
         return hotels;
     }
 
-    public async Task<IEnumerable<Hotel>> GetAllMatchingAsync(string? searchPhrase)
+    public async Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber)
     {
         var serachPhraseLower = searchPhrase?.ToLower();
-        var hotels = await dbContext.Hotels
-            .Where(h => serachPhraseLower == null 
-            || h.HotelName.ToLower().Contains(serachPhraseLower) 
-            || h.City.ToLower().Contains(serachPhraseLower))
+
+        var baseQuery = dbContext.Hotels
+            .Where(h => serachPhraseLower == null
+            || h.HotelName.ToLower().Contains(serachPhraseLower)
+            || h.City.ToLower().Contains(serachPhraseLower));
+
+        var totalCount = await baseQuery.CountAsync();
+
+        var hotels = await baseQuery
+            .Skip(pageSize * (pageNumber - 1))
+            .Take(pageSize)
             .ToListAsync();
 
-        return hotels;
+        return (hotels, totalCount);
     }
 
     public async Task<Hotel?> GetHotelByIdAsync(int id) 
