@@ -19,7 +19,10 @@ public class GetAllHotelsQueryHandler(ILogger<GetAllHotelsQueryHandler> logger, 
             request.SortBy,
             request.SortDirection);
 
+        
         var hotelDto = mapper.Map<IEnumerable<HotelDto>>(hotels);
+        
+
         var result = new PagedResults<HotelDto>(hotelDto, totalCount, request.PageSize, request.PageNumber);
         return result;
     }

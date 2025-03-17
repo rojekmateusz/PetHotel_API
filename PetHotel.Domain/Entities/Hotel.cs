@@ -12,7 +12,7 @@ public class Hotel
     public string PostalCode { get; set; } = default!;
     public string Email { get; set; } = default!;
     public  string Description { get; set; } = default!;
-    public int? Rating { get; set; } 
+    public double? AverageRating { get; set; }
     public string IsActive { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
@@ -25,4 +25,13 @@ public class Hotel
 
     public User User { get; set; } = default!;
     public string UserId { get; set; } = default!;
+
+    public double? CalculateAverageRating()
+    {
+        if (Reviews == null || Reviews.Count == 0)
+            return null;
+
+        double avgRating =  Reviews.Average(r => r.Rating);
+        return Math.Round(avgRating, 1);
+    }
 }

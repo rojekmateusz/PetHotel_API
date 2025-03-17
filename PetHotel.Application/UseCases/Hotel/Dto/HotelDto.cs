@@ -1,6 +1,7 @@
 ﻿using PetHotel.Application.UseCases.Image.Dto;
 using PetHotel.Application.UseCases.Reservatiion.Dto;
 using PetHotel.Application.UseCases.Review.Dto;
+using PetHotel.Application.UseCases.Review.Queries.GetReviewsByHotelId;
 using PetHotel.Application.UseCases.Room.Dto;
 using PetHotel.Application.UseCases.Service.Dto;
 using PetHotel.Domain.Entities;
@@ -19,7 +20,7 @@ public class HotelDto
     public string PostalCode { get; set; } = default!;
     public string Email { get; set; } = default!;
     public string? Description { get; set; }
-    public int? Rating { get; set; }
+    public double? AverageRating { get; set; }
     public string IsActive { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
