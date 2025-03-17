@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PetHotel.Domain.Constants;
 using PetHotel.Domain.Entities;
 using PetHotel.Domain.Repositories;
 using PetHotel.Infrastructure.Persistance;
+using System.Linq.Expressions;
 
 namespace PetHotel.Infrastructure.Repositories;
 
@@ -26,7 +28,7 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
         return hotels;
     }
 
-    public async Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber)
+    public async Task<(IEnumerable<Hotel>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber, string? sortBy, SortDirection sortDirection)
     {
         var serachPhraseLower = searchPhrase?.ToLower();
 
@@ -37,6 +39,21 @@ internal class HotelRepository(PetHotelDbContext dbContext) : IHotelRepository
 
         var totalCount = await baseQuery.CountAsync();
 
+        if (sortBy != null)
+        {
+            var columnsSelector = new Dictionary<string, Expression<Func<Hotel, object>>>
+             {
+                 { nameof(Hotel.HotelName), r => r.HotelName },
+                 { nameof(Hotel.Description), r => r.Description },
+                 { nameof(Hotel.City), r => r.City },
+             };
+
+            var selectedColumn = columnsSelector[sortBy];
+
+            baseQuery = sortDirection == SortDirection.Ascending
+                ? baseQuery.OrderBy(selectedColumn)
+                : baseQuery.OrderByDescending(selectedColumn);
+        }
         var hotels = await baseQuery
             .Skip(pageSize * (pageNumber - 1))
             .Take(pageSize)
