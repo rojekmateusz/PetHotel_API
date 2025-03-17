@@ -26,9 +26,9 @@ namespace PetHotel.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HotelDto>>> GetAllHotel()
+        public async Task<ActionResult<IEnumerable<HotelDto>>> GetAllHotel([FromQuery] GetAllHotelsQuery query)
         {
-            var hotels = await mediator.Send(new GetAllHotelsQuery());
+            var hotels = await mediator.Send(query);
             return Ok(hotels);
         }
 
