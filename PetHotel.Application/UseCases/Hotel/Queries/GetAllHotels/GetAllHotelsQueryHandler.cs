@@ -11,7 +11,7 @@ public class GetAllHotelsQueryHandler(ILogger<GetAllHotelsQueryHandler> logger, 
     public async Task<IEnumerable<HotelDto>> Handle(GetAllHotelsQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all Hotels");
-        var hotels = await hotelRepository.GetAllHotelsAsync();
+        var hotels = await hotelRepository.GetAllMatchingAsync(request.SearchPhrase);
         var hotelDto = mapper.Map<IEnumerable<HotelDto>>(hotels);
         return hotelDto;
     }

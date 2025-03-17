@@ -5,5 +5,5 @@ namespace PetHotel.Application.UseCases.Hotel.Queries.GetAllHotels;
 
 public class GetAllHotelsQuery : IRequest<IEnumerable<HotelDto>>
 {
-
+    public string? SearchPhrase { get; set; } 
 }
