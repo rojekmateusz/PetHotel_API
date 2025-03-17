@@ -2,7 +2,7 @@
 ### This is a .NET 8.0 web API for managing pet hotels, following the principles of Clean Architecture.
 
 ## Project Structure
-- PetHotel.API: The main API project. This is the entry point of the application.
+- PetHotel: The main API project. This is the entry point of the application.
 - PetHotel.Application: Contains the application logic. This layer is responsible for the application's behavior and policies.
 - PetHotel.Domain: Contains enterprise logic and types. This is the core layer of the application.
 - PetHotel.Infrastructure: Contains infrastructure-related code such as database and file system interactions. This layer supports the higher layers.
