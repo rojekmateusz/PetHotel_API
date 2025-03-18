@@ -5,5 +5,5 @@ namespace PetHotel.Domain.Repositories;
 public interface IServiceRepository
 {
     Task<int> CreateService(Service entity);
-    
+    Task DeleteService(Service entity);
 }

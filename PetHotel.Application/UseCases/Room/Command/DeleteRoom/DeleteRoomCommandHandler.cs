@@ -26,3 +26,4 @@ public class DeleteRoomCommandHandler(ILogger<DeleteRoomCommandHandler> logger, 
         await roomRepository.DeleteRoom(room);
     }
 }
+ 

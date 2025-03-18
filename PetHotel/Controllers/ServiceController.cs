@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Service.Command.CreateService;
+using PetHotel.Application.UseCases.Service.Command.DeleteService;
 using PetHotel.Application.UseCases.Service.Dto;
 using PetHotel.Application.UseCases.Service.Queries.GetAllServices;
 using PetHotel.Application.UseCases.Service.Queries.GetServiceByID;
@@ -35,5 +36,16 @@ public class ServiceController(IMediator mediator): ControllerBase
     {
         var service = await mediator.Send(new GetServiceByIdQuery(hotelId, serviceId));
         return Ok(service);
+    }
+
+    [HttpDelete]
+    [Route("{serviceId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = UserRoles.User)]
+    public async Task<IActionResult> DeleteService([FromRoute] int hotelId, [FromRoute] int serviceId)
+    {
+        await mediator.Send(new DeleteServiceCommand(hotelId, serviceId));
+        return NoContent();
     }
 }

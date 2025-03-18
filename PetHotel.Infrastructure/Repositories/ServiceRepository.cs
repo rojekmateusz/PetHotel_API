@@ -12,4 +12,10 @@ internal class ServiceRepository(PetHotelDbContext dbContext) : IServiceReposito
         await dbContext.SaveChangesAsync();
         return entity.ServiceId;
     }
+
+    public async Task DeleteService(Service entity)
+    {
+       dbContext.Services.Remove(entity);
+       await dbContext.SaveChangesAsync();
+    }
 }
