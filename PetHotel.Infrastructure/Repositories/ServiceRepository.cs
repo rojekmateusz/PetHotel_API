@@ -18,4 +18,9 @@ internal class ServiceRepository(PetHotelDbContext dbContext) : IServiceReposito
        dbContext.Services.Remove(entity);
        await dbContext.SaveChangesAsync();
     }
+
+    public async Task SaveChanges()
+    {
+        await dbContext.SaveChangesAsync();
+    }
 }

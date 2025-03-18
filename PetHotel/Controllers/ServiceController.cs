@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetHotel.Application.UseCases.Service.Command.CreateService;
 using PetHotel.Application.UseCases.Service.Command.DeleteService;
+using PetHotel.Application.UseCases.Service.Command.UpdateService;
 using PetHotel.Application.UseCases.Service.Dto;
 using PetHotel.Application.UseCases.Service.Queries.GetAllServices;
 using PetHotel.Application.UseCases.Service.Queries.GetServiceByID;
@@ -47,5 +48,18 @@ public class ServiceController(IMediator mediator): ControllerBase
     {
         await mediator.Send(new DeleteServiceCommand(hotelId, serviceId));
         return NoContent();
+    }
+
+    [HttpPost]
+    [Route("{serviceId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = UserRoles.User)]
+    public async Task<IActionResult> UpdateService([FromRoute] int hotelId, [FromRoute] int serviceId, [FromBody] UpdateServiceCommand command)
+    {
+        command.HotelId = hotelId;
+        command.ServiceId = serviceId;
+        await mediator.Send(command);
+        return Ok();
     }
 }
