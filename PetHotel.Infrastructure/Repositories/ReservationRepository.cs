@@ -37,4 +37,15 @@ internal class ReservationRepository(PetHotelDbContext dbContext) : IReservation
         dbContext.Reservations.Update(reservation);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task DeleteReservation(Reservation reservation)
+    {
+        dbContext.Reservations.Remove(reservation);
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task SaveChanges()
+    {
+        await dbContext.SaveChangesAsync();
+    }
 }

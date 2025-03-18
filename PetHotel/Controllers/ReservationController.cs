@@ -5,6 +5,7 @@ using PetHotel.Application.UseCases.Reservatiion.Dto;
 using PetHotel.Application.UseCases.Reservatiion.Queries.GetAllReservations;
 using PetHotel.Application.UseCases.Reservatiion.Queries.GetReservationById;
 using PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
+using PetHotel.Application.UseCases.Reservation.Command.DeleteReservation;
 using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers;
@@ -39,5 +40,16 @@ public class ReservationController(IMediator mediator) : ControllerBase
     {
     var reservation = await mediator.Send(new GetReservationByIdQuery(hotelId, reservationId));
     return Ok(reservation);
+    }
+
+    [HttpDelete]
+    [Route("{reservationId}")]
+    [Authorize(Roles = UserRoles.User)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteReservation([FromRoute] int hotelId, [FromRoute] int reservationId)
+    {
+        await mediator.Send(new DeleteReservationCommand(hotelId, reservationId));
+        return NoContent();
     }
 }
