@@ -24,6 +24,15 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
             context.Response.StatusCode = 403;
             await context.Response.WriteAsync("Access forbidden");
         }
+
+        catch (OwnerAlreadyExistsException alreadyExists)
+        {
+            context.Response.StatusCode = 400;
+            await context.Response.WriteAsync(alreadyExists.Message);
+
+            logger.LogWarning(alreadyExists.Message);
+        }
+
         catch (Exception ex)
         {
             logger.LogError(ex, ex.Message);

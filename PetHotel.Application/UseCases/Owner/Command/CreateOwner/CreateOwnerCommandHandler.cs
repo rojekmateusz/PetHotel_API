@@ -18,12 +18,10 @@ public class CreateOwnerCommandHandler(ILogger<CreateOwnerCommandHandler> logger
     {
         logger.LogInformation("Create new Owner {@Owner}", request);
         var currentUser = userContext.GetCurrentUser()!;
-        if(await ownerRepository.DoesOwnerExist(currentUser.Id))
-        {
-            logger.LogWarning("Owner already exists for user {UserId}", currentUser.Id);
-            throw new InvalidOperationException("An owner already exists for this user.");
-        }
 
+        if (await ownerRepository.DoesOwnerExist(currentUser.Id))
+            throw new OwnerAlreadyExistsException(currentUser.Id);
+       
         logger.LogInformation("{UserEmail} [{UserId}] is creating a new owner {@Owner}", currentUser.Email, currentUser.Id, request);
                
         var owner = mapper.Map<Domain.Entities.Owner>(request);
