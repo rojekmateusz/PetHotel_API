@@ -9,5 +9,6 @@ namespace PetHotel.Domain.Repositories
         Task<Owner?> GetOwnerByIdAsync(int id);
         Task DeleteOwner(Owner entity);
         Task SaveChanges();
+        Task<bool> DoesOwnerExist(string userId);
     }
 }

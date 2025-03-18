@@ -20,6 +20,12 @@ internal class OwnerRepository(PetHotelDbContext dbContext) : IOwnerRepository
         await dbContext.SaveChangesAsync();
     }
 
+    public async Task<bool> DoesOwnerExist(string userId)
+    {
+        return await dbContext.Owners.AnyAsync(o => o.UserId == userId);
+  
+    }
+
     public async Task<IEnumerable<Owner>> GetAllOwnersAsync()
     {
         var owners = await dbContext.Owners.ToListAsync();
