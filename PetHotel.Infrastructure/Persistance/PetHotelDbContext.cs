@@ -35,6 +35,11 @@ namespace PetHotel.Infrastructure.Persistance
                 .HasForeignKey(a => a.OwnerID);
 
             modelBuilder.Entity<Owner>()
+                .HasMany(a => a.Reservations)
+                .WithOne(o => o.Owner)
+                .HasForeignKey(a => a.OwnerId);
+
+            modelBuilder.Entity<Owner>()
                 .HasMany(a => a.Payments)
                 .WithOne(p => p.Owner)
                 .HasForeignKey(a => a.OwnerId);

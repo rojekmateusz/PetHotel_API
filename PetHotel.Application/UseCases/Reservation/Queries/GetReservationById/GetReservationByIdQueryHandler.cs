@@ -12,13 +12,15 @@ public class GetReservationByIdQueryHandler(ILogger<GetReservationByIdQueryHandl
 {
     public async Task<ReservationDto> Handle(GetReservationByIdQuery request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Getting reservation by Id: {@ReservationId} from Hotel: {@HoteId}", request.Id, request.HotelId);
+        logger.LogInformation("Getting reservation by Id: {@ReservationId} from Hotel: {@HoteId}", request.ReservationId, request.HotelId);
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
 
-        var reservation = reservationRepository.GetReservationByIdAsync(request.Id)
-            ?? throw new NotFoundException(nameof(Domain.Entities.Reservation), request.Id.ToString());
-            
+        var reservation = await reservationRepository.GetReservationByIdAsync(request.ReservationId)
+            ?? throw new NotFoundException(nameof(Domain.Entities.Reservation), request.ReservationId.ToString());
+
+        //var reservation = hotel.Reservations.FirstOrDefault(r => r.ReservationId == request.ReservationId)
+        //     ?? throw new NotFoundException(nameof(Domain.Entities.Reservation), request.ReservationId.ToString());
 
         var result = mapper.Map<ReservationDto>(reservation);
         return result;

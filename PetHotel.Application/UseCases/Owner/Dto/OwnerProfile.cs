@@ -11,7 +11,8 @@ public class OwnerProfile : Profile
     {
         CreateMap<Domain.Entities.Owner, OwnerDto>()
             .ForMember(a => a.Animals, opt => opt.MapFrom(src => src.Animals))
-            .ForMember(p => p.Payments, opt => opt.MapFrom(src => src.Payments));
+            .ForMember(p => p.Payments, opt => opt.MapFrom(src => src.Payments))
+            .ForMember(r => r.Reservations, opt => opt.MapFrom(src => src.Reservations));
 
         CreateMap<CreateOwnerCommand, Domain.Entities.Owner>();
         CreateMap<UpdateOwnerCommand, Domain.Entities.Owner>();    

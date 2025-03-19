@@ -13,5 +13,6 @@ public class CreateReservationCommand : IRequest<int>
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public int HotelId { get; set; }
     public int AnimalId { get; set; }
+    public int OwnerId { get; set; }
     public List<int> servicesIds { get; set; } = [];
 }

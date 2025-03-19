@@ -15,6 +15,7 @@ public class Owner
 
     public List<Animal> Animals { get; set; } = [];
     public List<Payment> Payments { get; set; } = [];
+    public List<Reservation> Reservations { get; set; } = [];
 
     public User user { get; set; } = default!;
     public string UserId { get; set; } = default!;

@@ -11,9 +11,8 @@ using PetHotel.Domain.Repositories;
 
 namespace PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
 
-public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHandler> logger, IMapper mapper, IHotelRepository hotelRepository,
-    IReservationRepository reservationRepository
-    //,IHotelAuthorizationService hotelAuthorizationService
+public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHandler> logger, IMapper mapper, IHotelRepository hotelRepository, 
+    IOwnerRepository ownerRepository, IReservationRepository reservationRepository, IOwnerAuthorizationService ownerAuthorizationService
     ) : IRequestHandler<CreateReservationCommand, int>
 {
     public async Task<int> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
@@ -22,9 +21,12 @@ public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHan
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
         
-       // if (!hotelAuthorizationService.Authorize(hotel, ResourceOperation.Create))
-       //      throw new ForbidException();
-        
+        var owner = await ownerRepository.GetOwnerByIdAsync(request.OwnerId)
+            ?? throw new NotFoundException(nameof(Owner), request.OwnerId.ToString());
+
+        if (!ownerAuthorizationService.Authorize(owner, ResourceOperation.Create))
+            throw new ForbidException();
+       
         var reservation = mapper.Map<Domain.Entities.Reservation>(request);
 
         int reservationId = await reservationRepository.CreateReservation(reservation);

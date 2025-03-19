@@ -13,10 +13,11 @@ namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("{hotelId}/services")]
-[Authorize(Roles = UserRoles.User)]
+
 public class ServiceController(IMediator mediator): ControllerBase
 {
     [HttpPost]
+    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<ServiceDto>>> CreateService([FromRoute] int hotelId, CreateServiceCommand command)
     {
         command.HotelId = hotelId;
@@ -25,6 +26,7 @@ public class ServiceController(IMediator mediator): ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<ServiceDto>>> GetAllServices([FromRoute] int hotelId)
     {
         var services = await mediator.Send(new GetAllServicesQuery(hotelId));
@@ -33,6 +35,7 @@ public class ServiceController(IMediator mediator): ControllerBase
 
     [HttpGet]
     [Route("{serviceId}")]
+    [AllowAnonymous]
     public async Task<ActionResult<ServiceDto>> GetServiceById([FromRoute] int hotelId, [FromRoute] int serviceId)
     {
         var service = await mediator.Send(new GetServiceByIdQuery(hotelId, serviceId));
@@ -41,6 +44,7 @@ public class ServiceController(IMediator mediator): ControllerBase
 
     [HttpDelete]
     [Route("{serviceId}")]
+    [Authorize(Roles = UserRoles.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [Authorize(Roles = UserRoles.User)]
@@ -52,6 +56,7 @@ public class ServiceController(IMediator mediator): ControllerBase
 
     [HttpPost]
     [Route("{serviceId}")]
+    [Authorize(Roles = UserRoles.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [Authorize(Roles = UserRoles.User)]

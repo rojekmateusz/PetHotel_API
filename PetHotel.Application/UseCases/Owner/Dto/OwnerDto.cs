@@ -1,5 +1,6 @@
 ﻿using PetHotel.Application.UseCases.Animal.Dto;
 using PetHotel.Application.UseCases.Payment.Dto;
+using PetHotel.Application.UseCases.Reservatiion.Dto;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.UseCases.Owner.Dto;
@@ -19,4 +20,5 @@ public class OwnerDto
 
     public List<AnimalDto> Animals { get; set; } = [];
     public List<PaymentDto> Payments { get; set; } = [];
+    public List<ReservationDto> Reservations { get; set; } = [];
 }

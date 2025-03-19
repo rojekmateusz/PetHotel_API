@@ -18,7 +18,10 @@ internal class ReservationRepository(PetHotelDbContext dbContext) : IReservation
 
     public async Task<IEnumerable<Reservation>> GetAllReservationsAsync()
     {
-       var reservations = await dbContext.Reservations.ToListAsync();
+       var reservations = await dbContext.Reservations
+           .Include(r => r.ReservationServices)
+           .ThenInclude(rs => rs.Service)
+           .ToListAsync();
        return reservations;
     }
 
@@ -26,7 +29,7 @@ internal class ReservationRepository(PetHotelDbContext dbContext) : IReservation
     {
         var reservation = await dbContext.Reservations
             .Include(r => r.ReservationServices)
-            .ThenInclude(rs => rs.Service) 
+            .ThenInclude(rs => rs.Service)
             .FirstOrDefaultAsync(r => r.ReservationId == id);
                    
         return reservation; 
