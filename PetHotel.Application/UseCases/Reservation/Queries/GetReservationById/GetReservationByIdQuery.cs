@@ -7,4 +7,5 @@ public class GetReservationByIdQuery(int hotelId, int reservationId) : IRequest<
 {
     public int ReservationId { get; set; } = reservationId;
     public int HotelId { get; set; } = hotelId;
+    
 }

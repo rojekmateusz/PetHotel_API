@@ -1,6 +1,6 @@
 ﻿namespace PetHotel.Application.UseCases.Service.Dto;
 
-public class ReservatioServicesDto
+public class ReservationServicesDto
 {
     public int ReservationId { get; set; }
     public int ServiceId { get; set; }

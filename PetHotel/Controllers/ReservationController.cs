@@ -6,18 +6,15 @@ using PetHotel.Application.UseCases.Reservatiion.Queries.GetAllReservations;
 using PetHotel.Application.UseCases.Reservatiion.Queries.GetReservationById;
 using PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
 using PetHotel.Application.UseCases.Reservation.Command.DeleteReservation;
-using PetHotel.Domain.Constants;
 
 namespace PetHotel.API.Controllers;
 
 [ApiController]
 [Route("api/hotels/{hotelId}/reservations")]
 [Authorize]
-
 public class ReservationController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<ReservationDto>>> CreateReservation([FromRoute] int hotelId, CreateReservationCommand command)
     {
         command.HotelId = hotelId;
@@ -26,7 +23,6 @@ public class ReservationController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAllReservations([FromRoute] int hotelId)
     {
         var reservations = await mediator.Send(new GetAllReservationsQuery(hotelId));
@@ -35,16 +31,14 @@ public class ReservationController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [Route("{reservationId}")]
-    [Authorize(Roles = UserRoles.User)]
     public async Task<ActionResult<IEnumerable<ReservationDto>>> GetReservationById([FromRoute] int hotelId, [FromRoute] int reservationId)
     {
-    var reservation = await mediator.Send(new GetReservationByIdQuery(hotelId, reservationId));
-    return Ok(reservation);
+        var reservation = await mediator.Send(new GetReservationByIdQuery(hotelId, reservationId));
+        return Ok(reservation);
     }
 
     [HttpDelete]
     [Route("{reservationId}")]
-    [Authorize(Roles = UserRoles.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteReservation([FromRoute] int hotelId, [FromRoute] int reservationId)

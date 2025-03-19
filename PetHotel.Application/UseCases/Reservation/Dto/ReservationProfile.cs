@@ -10,7 +10,7 @@ public class ReservationProfile : Profile
     public ReservationProfile()
     {
         CreateMap<Domain.Entities.Reservation, ReservationDto>()
-            .ForMember(s => s.ReservationServices, opt => opt.MapFrom(src => src.ReservationServices.Select(rs => new ReservatioServicesDto
+            .ForMember(s => s.ReservationServices, opt => opt.MapFrom(src => src.ReservationServices.Select(rs => new ReservationServicesDto
             {
                 ReservationId = rs.ReservationId,
                 ServiceId = rs.ServiceId,
@@ -19,7 +19,7 @@ public class ReservationProfile : Profile
                 Price = rs.Service.Price
             })));
 
-        CreateMap<ReservatioServicesDto, ReservationService>();
+        CreateMap<ReservationServicesDto, ReservationService>();
         //  .ForMember(s => s.Services, opt => opt.MapFrom(src => src.ReservationServices.Select(rs => rs.Service)));
         CreateMap<CreateReservationCommand, Domain.Entities.Reservation>();
     }

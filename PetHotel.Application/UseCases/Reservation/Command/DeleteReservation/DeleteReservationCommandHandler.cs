@@ -8,7 +8,8 @@ using PetHotel.Domain.Repositories;
 namespace PetHotel.Application.UseCases.Reservation.Command.DeleteReservation;
 
 public class DeleteReservationCommandHandler(ILogger<DeleteReservationCommandHandler> logger, IHotelRepository hotelRepository, 
-    IReservationRepository reservationRepository, IHotelAuthorizationService hotelAuthorizationService) : IRequestHandler<DeleteReservationCommand>
+    IReservationRepository reservationRepository, IHotelAuthorizationService hotelAuthorizationService,
+    IOwnerAuthorizationService ownerAuthorizationService, IOwnerRepository ownerRepository) : IRequestHandler<DeleteReservationCommand>
 {
     public async Task Handle(DeleteReservationCommand request, CancellationToken cancellationToken)
     {
@@ -17,12 +18,18 @@ public class DeleteReservationCommandHandler(ILogger<DeleteReservationCommandHan
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
 
-        if(!hotelAuthorizationService.Authorize(hotel, ResourceOperation.Delete))
+        var reservation = await reservationRepository.GetReservationByIdAsync(request.ReservationId)
+            ?? throw new NotFoundException(nameof(Domain.Entities.Reservation), request.ReservationId.ToString());
+
+        var owner = await ownerRepository.GetOwnerByIdAsync(reservation.OwnerId)
+            ?? throw new NotFoundException(nameof(Owner), reservation.OwnerId.ToString());
+
+        bool isAuthorized = hotelAuthorizationService.Authorize(hotel, ResourceOperation.Delete) || 
+                           ownerAuthorizationService.Authorize(owner, ResourceOperation.Delete);
+
+        if (!isAuthorized)
             throw new ForbidException();
 
-        var service = hotel.Reservations.FirstOrDefault(r => r.ReservationId == request.ReservationId)
-            ?? throw new NotFoundException(nameof(Reservation), request.ReservationId.ToString());
-
-        await reservationRepository.DeleteReservation(service);
+        await reservationRepository.DeleteReservation(reservation);
     }
 }

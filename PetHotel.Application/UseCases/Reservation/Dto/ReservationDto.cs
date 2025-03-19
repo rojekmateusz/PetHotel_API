@@ -19,6 +19,6 @@ public class ReservationDto
     public int OwnerId { get; set; }
 
     
-    public List<ReservatioServicesDto> ReservationServices { get; set; } = [];
+    public List<ReservationServicesDto> ReservationServices { get; set; } = [];
     
 }
