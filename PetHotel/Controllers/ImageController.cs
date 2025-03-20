@@ -22,7 +22,7 @@ namespace PetHotel.API.Controllers
             var command = new UploadImageCommand()
             {
                 HotelId = hotelId,
-                FileName = file.FileName,
+                FileName = file.FileName, 
                 File = stream
             };
 
