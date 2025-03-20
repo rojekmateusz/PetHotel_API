@@ -7,13 +7,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PetHotel.Domain.Constants;
 using PetHotel.Domain.Exceptions;
+using PetHotel.Domain.Interfaces;
 using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 
 namespace PetHotel.Application.UseCases.Image.Command.UploadImage;
 
-public class UploadImageCommandHandler(ILogger<UploadImageCommandHandler> logger,IMapper mapper, IConfiguration configuration, IHotelRepository hotelRepository,
-    IImageRepository imageRepository, IHotelAuthorizationService hotelAuthorizationService) : IRequestHandler<UploadImageCommand, int>
+public class UploadImageCommandHandler(ILogger<UploadImageCommandHandler> logger,IMapper mapper, IHotelRepository hotelRepository,
+    IHotelAuthorizationService hotelAuthorizationService, IBlobStorageService blobStorageService,
+    IImageRepository imageRepository) : IRequestHandler<UploadImageCommand, int>
 {
     public async Task<int> Handle(UploadImageCommand request, CancellationToken cancellationToken)
     {
@@ -28,34 +30,13 @@ public class UploadImageCommandHandler(ILogger<UploadImageCommandHandler> logger
         if (!hotelAuthorizationService.Authorize(hotel, ResourceOperation.Create))
             throw new ForbidException();
 
-        request.Url = await UploadToAzureBlobStorage(request.File);
+        var ImageUrl = await blobStorageService.UploadToBlobAsync(request.File, request.FileName);
+        request.Url = ImageUrl;
 
         var image = mapper.Map<Domain.Entities.Image>(request);
-        var id = await imageRepository.CreateImage(image);
-        return id;
-        
+        int imageId = await imageRepository.CreateImage(image);
+        return imageId;
     }
 
-    private async Task<string> UploadToAzureBlobStorage(IFormFile file)
-    {
-        var connectionString = configuration["AzureStorage:ConnectionString"];
-        if (string.IsNullOrEmpty(connectionString))
-             throw new ArgumentNullException(nameof(connectionString), "Azure Storage connection string is missing or empty.");
-        
-        var containerName = configuration["AzureStorage:ContainerName"];
-
-        var blobServiceClient = new BlobServiceClient(connectionString);
-        var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
-        await containerClient.CreateIfNotExistsAsync(PublicAccessType.Blob);
-
-        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-        var blobClient = containerClient.GetBlobClient(fileName);
-
-        using (var stream = file.OpenReadStream())
-        {
-            await blobClient.UploadAsync(stream, overwrite: true);
-        }
-
-        return blobClient.Uri.ToString();
-    }
+   
 }

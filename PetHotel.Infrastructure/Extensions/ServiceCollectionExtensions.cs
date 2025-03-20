@@ -3,12 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PetHotel.Domain.Entities;
+using PetHotel.Domain.Interfaces;
 using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 using PetHotel.Infrastructure.Authorization.Services;
+using PetHotel.Infrastructure.Configuration;
 using PetHotel.Infrastructure.Persistance;
 using PetHotel.Infrastructure.Repositories;
 using PetHotel.Infrastructure.Seeders;
+using PetHotel.Infrastructure.Storage;
 using System.Runtime.CompilerServices;
 
 namespace PetHotel.Infrastructure.Extensions;
@@ -37,5 +40,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ISeeder, Seeder>();
         services.AddScoped<IOwnerAuthorizationService, OwnerAuthorizationService>();
         services.AddScoped<IHotelAuthorizationService, HotelAuthorizationService>();
+        services.Configure<BlobStorageSettings>(configuration.GetSection("BlobStorage"));
+        services.AddScoped<IBlobStorageService, BlobStorageService>();
     }
 }

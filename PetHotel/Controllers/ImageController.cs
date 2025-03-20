@@ -15,14 +15,19 @@ namespace PetHotel.API.Controllers
         [HttpPost]
         [Authorize(Roles = UserRoles.User)]
         [Route("/hotels/{hotelId}/images")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> UploadImage([FromRoute] int hotelId, IFormFile file, [FromBody] UploadImageCommand command)
+        public async Task<IActionResult> UploadImage([FromRoute] int hotelId, IFormFile file, string description)
         {
-            command.HotelId = hotelId;
-            command.File = file;
-            var imageUrl = await mediator.Send(command);
-            
-            return Ok(new { imageUrl });
+            using var stream = file.OpenReadStream();
+
+            var command = new UploadImageCommand()
+            {
+                HotelId = hotelId,
+                FileName = file.FileName,
+                File = stream
+            };
+
+            await mediator.Send(command);
+            return NoContent();
           
         }
     }
