@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace PetHotel.Application.UseCases.Image.Command.UploadImage;
+namespace PetHotel.Application.UseCases.Service.Command.CreateService;
 
-public class UploadImageCommandValidator: AbstractValidator<UploadImageCommand>
+public class CreateServiceCommandValidator: AbstractValidator<CreateServiceCommand>
 {
-    public UploadImageCommandValidator()
+    public CreateServiceCommandValidator()
     {
         RuleFor(dto => dto.Description)
             .MaximumLength(500)
