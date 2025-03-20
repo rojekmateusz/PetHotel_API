@@ -26,7 +26,7 @@ public class GetReservationByIdQueryHandler(ILogger<GetReservationByIdQueryHandl
 
         var owner = await ownerRepository.GetOwnerByIdAsync(reservation.OwnerId)
             ?? throw new NotFoundException(nameof(Owner), reservation.OwnerId.ToString());
-
+                
        
         bool isAuthorized = hotelAuthorizationService.Authorize(hotel, ResourceOperation.Read) || 
                            ownerAuthorizationService.Authorize(owner, ResourceOperation.Read);

@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PetHotel.Domain.Constants;
 using PetHotel.Domain.Entities;
 using PetHotel.Infrastructure.Persistance;
@@ -13,16 +14,24 @@ internal class Seeder(PetHotelDbContext dbContext, UserManager<User> userManager
 {
     public async Task Seed()
     {
-        if (!dbContext.Roles.Any())
+        if (dbContext.Database.GetPendingMigrations().Any())
         {
-            var roles = Roles;
-            dbContext.Roles.AddRange(roles);
-            await dbContext.SaveChangesAsync();
+            await dbContext.Database.MigrateAsync();
         }
 
-        if (!dbContext.Users.Any())
+        if (await dbContext.Database.CanConnectAsync())
         {
-            await SeedUsers();
+            if (!dbContext.Roles.Any())
+            {
+                var roles = Roles;
+                dbContext.Roles.AddRange(roles);
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.Users.Any())
+            {
+                await SeedUsers();
+            }
         }
     }
 

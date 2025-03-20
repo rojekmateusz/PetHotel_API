@@ -2,12 +2,15 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Domain.Constants;
 using PetHotel.Domain.Exceptions;
+using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 
 namespace PetHotel.Application.UseCases.Reservatiion.Queries.GetAllReservations;
 
-public class GetAllReservationsQueryHandler(ILogger<GetAllReservationsQueryHandler> logger, IMapper mapper, IHotelRepository hotelRepository) : 
+public class GetAllReservationsQueryHandler(ILogger<GetAllReservationsQueryHandler> logger, IMapper mapper, IHotelRepository hotelRepository,
+    IHotelAuthorizationService hotelAuthorizationService) : 
 IRequestHandler<GetAllReservationsQuery, List<ReservationDto>>
 {
     public async Task<List<ReservationDto>> Handle(GetAllReservationsQuery request, CancellationToken cancellationToken)
@@ -16,6 +19,8 @@ IRequestHandler<GetAllReservationsQuery, List<ReservationDto>>
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
 
+        if(!hotelAuthorizationService.Authorize(hotel, ResourceOperation.Read))
+            throw new ForbidException();
 
         var reservations = mapper.Map<List<ReservationDto>>(hotel.Reservations);
         return reservations;
