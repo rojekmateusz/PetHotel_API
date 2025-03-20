@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
-using PetHotel.Application.UseCases.Reservatiion.Queries.GetAllReservations;
-using PetHotel.Application.UseCases.Reservatiion.Queries.GetReservationById;
+using PetHotel.Application.UseCases.Reservation.Dto;
+using PetHotel.Application.UseCases.Reservation.Queries.GetAllReservations;
+using PetHotel.Application.UseCases.Reservation.Queries.GetReservationById;
 using PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
 using PetHotel.Application.UseCases.Reservation.Command.DeleteReservation;
 

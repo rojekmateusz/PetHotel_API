@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Application.UseCases.Reservation.Dto;
 using PetHotel.Application.UseCases.Service.Dto;
 
 namespace PetHotel.Application.UseCases.Reservation.Command.CreateReservation;

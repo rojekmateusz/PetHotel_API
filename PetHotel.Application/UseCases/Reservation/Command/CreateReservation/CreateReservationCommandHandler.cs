@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Application.UseCases.Reservation.Dto;
 using PetHotel.Domain.Constants;
 using PetHotel.Domain.Entities;
 using PetHotel.Domain.Exceptions;

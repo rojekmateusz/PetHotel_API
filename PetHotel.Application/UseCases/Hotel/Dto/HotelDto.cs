@@ -1,5 +1,5 @@
 ﻿using PetHotel.Application.UseCases.Image.Dto;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Application.UseCases.Reservation.Dto;
 using PetHotel.Application.UseCases.Review.Dto;
 using PetHotel.Application.UseCases.Review.Queries.GetReviewsByHotelId;
 using PetHotel.Application.UseCases.Room.Dto;

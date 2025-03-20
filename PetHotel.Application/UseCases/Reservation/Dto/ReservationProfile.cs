@@ -3,7 +3,7 @@ using PetHotel.Application.UseCases.Reservation.Command.CreateReservation;
 using PetHotel.Application.UseCases.Service.Dto;
 using PetHotel.Domain.Entities;
 
-namespace PetHotel.Application.UseCases.Reservatiion.Dto;
+namespace PetHotel.Application.UseCases.Reservation.Dto;
 
 public class ReservationProfile : Profile
 {
@@ -20,7 +20,6 @@ public class ReservationProfile : Profile
             })));
 
         CreateMap<ReservationServicesDto, ReservationService>();
-        //  .ForMember(s => s.Services, opt => opt.MapFrom(src => src.ReservationServices.Select(rs => rs.Service)));
         CreateMap<CreateReservationCommand, Domain.Entities.Reservation>();
     }
 }

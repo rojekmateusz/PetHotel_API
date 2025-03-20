@@ -2,7 +2,7 @@
 using PetHotel.Domain.Entities;
 using System.Text.Json.Serialization;
 
-namespace PetHotel.Application.UseCases.Reservatiion.Dto;
+namespace PetHotel.Application.UseCases.Reservation.Dto;
 
 public class ReservationDto
 {

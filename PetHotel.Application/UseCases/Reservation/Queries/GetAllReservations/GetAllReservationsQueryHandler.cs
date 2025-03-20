@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Application.UseCases.Reservation.Dto;
 using PetHotel.Domain.Constants;
 using PetHotel.Domain.Exceptions;
 using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 
-namespace PetHotel.Application.UseCases.Reservatiion.Queries.GetAllReservations;
+namespace PetHotel.Application.UseCases.Reservation.Queries.GetAllReservations;
 
 public class GetAllReservationsQueryHandler(ILogger<GetAllReservationsQueryHandler> logger, IMapper mapper, IHotelRepository hotelRepository,
     IHotelAuthorizationService hotelAuthorizationService) : 

@@ -1,6 +1,6 @@
 ﻿using PetHotel.Application.UseCases.Animal.Dto;
 using PetHotel.Application.UseCases.Payment.Dto;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Application.UseCases.Reservation.Dto;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.UseCases.Owner.Dto;

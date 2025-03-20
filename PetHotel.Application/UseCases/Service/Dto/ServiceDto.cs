@@ -1,4 +1,4 @@
-﻿using PetHotel.Application.UseCases.Reservatiion.Dto;
+﻿using PetHotel.Application.UseCases.Reservation.Dto;
 using PetHotel.Domain.Entities;
 
 namespace PetHotel.Application.UseCases.Service.Dto

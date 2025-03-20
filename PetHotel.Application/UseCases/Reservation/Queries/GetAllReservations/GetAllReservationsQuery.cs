@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using PetHotel.Application.UseCases.Reservatiion.Dto;
+using PetHotel.Application.UseCases.Reservation.Dto;
 
-namespace PetHotel.Application.UseCases.Reservatiion.Queries.GetAllReservations;
+namespace PetHotel.Application.UseCases.Reservation.Queries.GetAllReservations;
 
 public class GetAllReservationsQuery(int hotelId) : IRequest<List<ReservationDto>>
 {
