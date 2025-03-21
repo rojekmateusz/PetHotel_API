@@ -2,10 +2,10 @@
 
 namespace PetHotel.Application.UseCases.Hotel.Command.CreateHotel;
 
-public class CreateHotelValidator : AbstractValidator<CreateHotelCommand>
+public class CreateHotelCommandValidator : AbstractValidator<CreateHotelCommand>
 {
     private readonly List<string> validIsActive = ["Active", "Inactive"];
-    public CreateHotelValidator()
+    public CreateHotelCommandValidator()
     {
         RuleFor(dto => dto.HotelName)
             .Length(2, 40)
@@ -29,3 +29,4 @@ public class CreateHotelValidator : AbstractValidator<CreateHotelCommand>
 
     }
 }
+
