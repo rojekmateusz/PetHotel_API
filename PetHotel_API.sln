@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.API", "PetHotel\PetHotel.API.csproj", "{9E01FE70-1445-4996-A789-B389F8320112}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application", "PetHotel.Application\PetHotel.Application.csproj", "{65116884-AFCD-4C9D-9677-46B00F0EAC85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Infrastructure", "PetHotel.Infrastructure\PetHotel.Infrastructure.csproj", "{B5D5945C-8C48-49CB-A14D-C8C466A0168B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application.Tests", "PetHotel.Application.Tests1\PetHotel.Application.Tests.csproj", "{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
