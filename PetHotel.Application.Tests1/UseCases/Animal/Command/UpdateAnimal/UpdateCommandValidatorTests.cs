@@ -1,24 +1,24 @@
 ﻿using FluentValidation.TestHelper;
-using PetHotel.Application.UseCases.Animal.Command.CreateAnimal;
+using PetHotel.Application.UseCases.Animal.Command.UpdateAnimal;
 using Xunit;
 
-namespace PetHotel.Application.Tests.UseCases.Animal.Command.CreateAnimal;
+namespace PetHotel.Application.Tests.UseCases.Animal.Command.UpdateAnimal;
 
-public class CreateAnimalCommandValidatorTests
+public class UpdateCommandValidatorTests
 {
     [Fact()]
-    public void Validator_ForValidCommand_ShouldNotHaveValidationErrors()
+    public void Validator_ForValidCommand_ShouldNotHaveValidatorErrors()
     {
         // arrange
 
-        var command = new CreateAnimalCommand()
+        var command = new UpdateAnimalCommand()
         {
             Name = "Pusia",
             Age = 1,
             Weight = 3,
         };
 
-        var validator = new CreateAnimalCommandValidator();
+        var validator = new UpdateCommandValidator();
 
         // act
 
@@ -27,7 +27,6 @@ public class CreateAnimalCommandValidatorTests
         // assert
 
         result.ShouldNotHaveAnyValidationErrors();
-
     }
 
     [Fact()]
@@ -35,14 +34,14 @@ public class CreateAnimalCommandValidatorTests
     {
         // arrange
 
-        var command = new CreateAnimalCommand()
+        var command = new UpdateAnimalCommand()
         {
             Name = "P",
             Age = 0,
             Weight = 0
         };
 
-        var validator = new CreateAnimalCommandValidator();
+        var validator = new UpdateCommandValidator();
 
         // act
 
@@ -53,7 +52,5 @@ public class CreateAnimalCommandValidatorTests
         result.ShouldHaveValidationErrorFor(a => a.Name);
         result.ShouldHaveValidationErrorFor(a => a.Age);
         result.ShouldHaveValidationErrorFor(a => a.Weight);
-
-
     }
 }
