@@ -15,4 +15,9 @@ public class UpdatePaymentCommandValidator : AbstractValidator<UpdatePaymentComm
             .Must(validStatus.Contains)
             .WithMessage("Invalid status. Please choose from the valid categories. Cancelled, Paid or Unpaid");
     }
+
+    public void ShouldHaveValidationErrorFor(Func<object, object> value)
+    {
+        throw new NotImplementedException();
+    }
 }
