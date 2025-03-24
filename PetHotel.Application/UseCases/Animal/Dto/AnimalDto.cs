@@ -12,6 +12,7 @@ public class AnimalDto
     public int? Age { get; set; }
     public string? Note { get; set; }
     public decimal? Weight { get; set; }
+    public int OwnerID { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public List<ReservationDto> Reservations { get; set; } = [];
