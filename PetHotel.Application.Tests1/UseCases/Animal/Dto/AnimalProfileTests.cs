@@ -23,7 +23,7 @@ public class AnimalProfileTests
     }
 
     [Fact()]
-    public void CreateMap_FromAnimalToAnimalDto_MapCorrectly()
+    public void CreateMap_FromAnimalToAnimalDto_MapsCorrectly()
     {
         // arrange
 
@@ -61,7 +61,7 @@ public class AnimalProfileTests
     }
 
     [Fact()]
-    public void CreateMap_UpdateAnimalToAnimal_MapCorrectly()
+    public void CreateMap_FromUpdateAnimalToAnimal_MapsCorrectly()
     {
         // arrange
 
@@ -97,7 +97,7 @@ public class AnimalProfileTests
     }
 
     [Fact()]
-    public void CreateMap_CreateAnimalToAnimal_MapCorrectly()
+    public void CreateMap_FromCreateAnimalToAnimal_MapsCorrectly()
     {
         // arrange
 
