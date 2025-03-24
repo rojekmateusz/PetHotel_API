@@ -9,6 +9,8 @@ public class CreateHotelValidatorTests
     [Fact()]
     public void Validato_ForValidCommand_ShouldNotHaveValidatorErrors()
     {
+        // arrange
+
         var command = new CreateHotelCommand()
         {
             HotelName = "Dog Hotel",
