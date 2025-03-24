@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PetHotel.Application.Tests.UseCases.Hotel.Command.CreateHotel;
 
-public class CreateHotelValidatorTests
+public class CreateHotelCommandValidatorTests
 {
     [Fact()]
     public void Validato_ForValidCommand_ShouldNotHaveValidatorErrors()
