@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using PetHotel.Application.UseCases.Owner.Command.UpdateOwner;
 using PetHotel.Application.UseCases.Payment.Command.CreatePayment;
 using PetHotel.Application.UseCases.Payment.Command.UpdatePayment;
 using PetHotel.Application.UseCases.Payment.Dto;
@@ -110,6 +109,4 @@ public class PaymentProfileTests
         payment.CreatedAt.Should().Be(command.CreatedAt);
         payment.OwnerId.Should().Be(command.OwnerId);
     }
-
-
 }
