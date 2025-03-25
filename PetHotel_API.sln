@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.API", "PetHotel\PetHotel.API.csproj", "{9E01FE70-1445-4996-A789-B389F8320112}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8B0FE67B-1D4E-4348-B4D6-41412AF2115E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Domain", "PetHotel.Domain\PetHotel.Domain.csproj", "{716114E1-7B7E-4AB8-8BF9-026DC7057850}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{48AA7644-458D-44C9-9DD5-B38E6BEF43DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application", "PetHotel.Application\PetHotel.Application.csproj", "{65116884-AFCD-4C9D-9677-46B00F0EAC85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.API", "src\PetHotel\PetHotel.API.csproj", "{F988ACC5-1135-4278-8219-56D418497BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Infrastructure", "PetHotel.Infrastructure\PetHotel.Infrastructure.csproj", "{B5D5945C-8C48-49CB-A14D-C8C466A0168B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application", "src\PetHotel.Application\PetHotel.Application.csproj", "{0F25C46D-8E9B-4724-B088-351224949B47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application.Tests", "PetHotel.Application.Tests1\PetHotel.Application.Tests.csproj", "{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Domain", "src\PetHotel.Domain\PetHotel.Domain.csproj", "{D1817227-ABE0-4958-8F55-E6BEAEF599C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Infrastructure", "src\PetHotel.Infrastructure\PetHotel.Infrastructure.csproj", "{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application.Tests", "tests\PetHotel.Application.Tests\PetHotel.Application.Tests.csproj", "{863F7300-4F07-4EE8-A376-E3FDC50A52AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,28 +23,35 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E01FE70-1445-4996-A789-B389F8320112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E01FE70-1445-4996-A789-B389F8320112}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E01FE70-1445-4996-A789-B389F8320112}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E01FE70-1445-4996-A789-B389F8320112}.Release|Any CPU.Build.0 = Release|Any CPU
-		{716114E1-7B7E-4AB8-8BF9-026DC7057850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{716114E1-7B7E-4AB8-8BF9-026DC7057850}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{716114E1-7B7E-4AB8-8BF9-026DC7057850}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{716114E1-7B7E-4AB8-8BF9-026DC7057850}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65116884-AFCD-4C9D-9677-46B00F0EAC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65116884-AFCD-4C9D-9677-46B00F0EAC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65116884-AFCD-4C9D-9677-46B00F0EAC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65116884-AFCD-4C9D-9677-46B00F0EAC85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5D5945C-8C48-49CB-A14D-C8C466A0168B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E68F0FEC-17CE-499B-9984-EFF4D338A3C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F988ACC5-1135-4278-8219-56D418497BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F988ACC5-1135-4278-8219-56D418497BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F988ACC5-1135-4278-8219-56D418497BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F988ACC5-1135-4278-8219-56D418497BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F25C46D-8E9B-4724-B088-351224949B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F25C46D-8E9B-4724-B088-351224949B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F25C46D-8E9B-4724-B088-351224949B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F25C46D-8E9B-4724-B088-351224949B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1817227-ABE0-4958-8F55-E6BEAEF599C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1817227-ABE0-4958-8F55-E6BEAEF599C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1817227-ABE0-4958-8F55-E6BEAEF599C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1817227-ABE0-4958-8F55-E6BEAEF599C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F988ACC5-1135-4278-8219-56D418497BE0} = {48AA7644-458D-44C9-9DD5-B38E6BEF43DB}
+		{0F25C46D-8E9B-4724-B088-351224949B47} = {48AA7644-458D-44C9-9DD5-B38E6BEF43DB}
+		{D1817227-ABE0-4958-8F55-E6BEAEF599C4} = {48AA7644-458D-44C9-9DD5-B38E6BEF43DB}
+		{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1} = {48AA7644-458D-44C9-9DD5-B38E6BEF43DB}
+		{863F7300-4F07-4EE8-A376-E3FDC50A52AE} = {8B0FE67B-1D4E-4348-B4D6-41412AF2115E}
 	EndGlobalSection
 EndGlobal
