@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.Application.Tests", "tests\PetHotel.Application.Tests\PetHotel.Application.Tests.csproj", "{863F7300-4F07-4EE8-A376-E3FDC50A52AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetHotel.API.Tests", "src\PetHotel.API.Tests1\PetHotel.API.Tests.csproj", "{FF2AEC6C-2B54-4993-A150-52028F93CDD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{863F7300-4F07-4EE8-A376-E3FDC50A52AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF2AEC6C-2B54-4993-A150-52028F93CDD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF2AEC6C-2B54-4993-A150-52028F93CDD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF2AEC6C-2B54-4993-A150-52028F93CDD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF2AEC6C-2B54-4993-A150-52028F93CDD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{D1817227-ABE0-4958-8F55-E6BEAEF599C4} = {48AA7644-458D-44C9-9DD5-B38E6BEF43DB}
 		{FD6B9905-6ACE-4580-B4DF-2E1FD79E27E1} = {48AA7644-458D-44C9-9DD5-B38E6BEF43DB}
 		{863F7300-4F07-4EE8-A376-E3FDC50A52AE} = {8B0FE67B-1D4E-4348-B4D6-41412AF2115E}
+		{FF2AEC6C-2B54-4993-A150-52028F93CDD8} = {8B0FE67B-1D4E-4348-B4D6-41412AF2115E}
 	EndGlobalSection
 EndGlobal
