@@ -21,7 +21,7 @@ public class CreatePaymentCommandHandler(ILogger<CreatePaymentCommandHandler> lo
             throw new ForbidException();
 
         var payment = mapper.Map<Domain.Entities.Payment>(request);
-        await paymentRepository.CreatePayment(payment);
-        return payment.Id;
+        var paymentId = await paymentRepository.CreatePayment(payment);
+        return paymentId;
     }
 }
