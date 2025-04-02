@@ -74,7 +74,7 @@ public class CreatePaymentCommandHandlerTests
     [Fact]
     public async Task Handle_WithNonExistingOwner_ShouldThrowNotFoundException()
     {
-        // Arrange
+        // arrange
 
         var request = new CreatePaymentCommand
         {
@@ -121,7 +121,8 @@ public class CreatePaymentCommandHandlerTests
 
         Func<Task> act = async () => await _handler.Handle(request, CancellationToken.None);
 
-        // Assert
+        // assert
+
         await act.Should().ThrowAsync<ForbidException>();
     }
 }

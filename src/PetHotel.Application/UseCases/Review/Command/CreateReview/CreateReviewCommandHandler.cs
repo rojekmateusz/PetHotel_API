@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using PetHotel.Domain.Constants;
 using PetHotel.Domain.Exceptions;
+using PetHotel.Domain.Interfaces.AuthorizationServices;
 using PetHotel.Domain.Repositories;
 
 namespace PetHotel.Application.UseCases.Review.Command.CreateReview;
@@ -14,7 +16,7 @@ public class CreateReviewCommandHandler(ILogger<CreateReviewCommandHandler> logg
         logger.LogInformation("Creating review for hotel {HotelId}", request.HotelId);
         var hotel = await hotelRepository.GetHotelByIdAsync(request.HotelId)
             ?? throw new NotFoundException(nameof(Hotel), request.HotelId.ToString());
-
+             
         var review = mapper.Map<Domain.Entities.Review>(request);
         return await reviewRepository.CreateReview(review);
     }
