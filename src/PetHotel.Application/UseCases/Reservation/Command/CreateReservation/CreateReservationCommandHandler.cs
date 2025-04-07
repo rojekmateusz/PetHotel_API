@@ -42,7 +42,7 @@ public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHan
             });
         }
 
-        var reservationDto = mapper.Map<Domain.Entities.Reservation>(reservation);
+        var reservationDto = mapper.Map<Domain.Entities.Reservation>(reservation);  
 
         await reservationRepository.UpdateReservation(reservationDto);
 
