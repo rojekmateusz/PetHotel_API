@@ -9,8 +9,8 @@ using PetHotel.Domain.Repositories;
 
 namespace PetHotel.Application.UseCases.Room.Command.UpdateRoom;
 
-public class UpdateRoomCommandHandler(ILogger<UpdateRoomCommandHandler> logger, IMapper mapper, IHotelRepository hotelRepository, IRoomRepository roomRepository,
-    IHotelAuthorizationService hotelAuthorizationService) : IRequestHandler<UpdateRoomCommand>
+public class UpdateRoomCommandHandler(ILogger<UpdateRoomCommandHandler> logger, IMapper mapper, IHotelRepository hotelRepository, IRoomRepository roomRepository, IHotelAuthorizationService hotelAuthorizationService)
+    : IRequestHandler<UpdateRoomCommand>
 {
     public async Task Handle(UpdateRoomCommand request, CancellationToken cancellationToken)
     {
