@@ -20,14 +20,6 @@ This project uses several NuGet packages and libraries to achieve its functional
 
 Please refer to the official documentation of each package for more details and usage examples.
 
-## 🌟 Live Demo
-You can test the API at:
-</br>
-`<link>`: https://pethotel-api-dev-a7echzexcwe5hwea.polandcentral-01.azurewebsites.net
-
-API documentation (Swagger) is available at:
-</br>
-`<link>`: https://pethotel-api-dev-a7echzexcwe5hwea.polandcentral-01.azurewebsites.net/swagger
 
 ### Quick Test Guide
 1. Visit the Swagger documentation at the demo site
@@ -35,8 +27,6 @@ API documentation (Swagger) is available at:
 3. Login using `/api/Account/login` to receive JWT token
 4. Authorize in Swagger using the received token (click "Authorize" button)
 5. Start testing other endpoints!
-
-Note: The demo site is hosted on Azure Web App and represents the development environment.
 
 
 ## 🌟 Features
